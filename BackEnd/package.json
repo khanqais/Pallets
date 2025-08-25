@@ -16,13 +16,19 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
     "fast-two-sms": "^3.0.0",
+    "helmet": "^8.1.0",
+    "joi": "^18.0.1",
     "mongo": "^0.1.0",
     "mongoose": "^8.18.0",
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
     "otp-generator": "^4.0.1",
     "passport": "^0.7.0",
-    "twilio": "^5.8.0"
+    "react-lazyload": "^3.2.1",
+    "redis": "^5.8.2",
+    "twilio": "^5.8.0",
+    "winston": "^3.17.0"
   }
 }

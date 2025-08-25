@@ -5,11 +5,20 @@ const cors = require("cors");
 const connectDB = require("./DB/connect");
 const nodemailer = require('nodemailer');
 const twilio = require('twilio'); 
+const Joi = require('joi');
+
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const inquirySchema = Joi.object({
+  mobile: Joi.string().pattern(/^[0-9]{10}$/).required(),
+  quantity: Joi.number().min(1).max(10000).required(),
+  interestedIn: Joi.string().min(3).max(100).required(),
+  size: Joi.string().valid('800mm X 1200mm', '1200mm X 1000mm', '1000mm X 1000mm').required(),
+  requirements: Joi.string().max(500).optional()
+});
 
 const twilioClient = twilio(
   process.env.TWILIO_ACCOUNT_SID,
@@ -57,7 +66,12 @@ const sendWhatsAppNotification = async (orderDetails) => {
 
 
 app.post('/product-inquiry', async (req, res) => {
-  console.log('📩 Received product inquiry:', req.body);
+
+  const { error, value } = inquirySchema.validate(req.body);
+  if (error) {
+      return res.status(400).json({ error: error.details[0].message });
+  }
+
   
   const { product, customer, timestamp } = req.body;
   
