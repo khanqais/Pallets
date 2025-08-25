@@ -1,4 +1,4 @@
-// TextType.jsx
+
 import React, { useState, useEffect } from 'react';
 
 const TextType = ({ 
@@ -30,7 +30,7 @@ const TextType = ({
         
         return () => clearTimeout(timer);
       } else {
-        // Finished typing current text
+        
         const pauseTimer = setTimeout(() => {
           setIsTyping(false);
           setCurrentCharIndex(0);
@@ -39,7 +39,7 @@ const TextType = ({
         return () => clearTimeout(pauseTimer);
       }
     } else {
-      // Start erasing
+      
       if (displayText.length > 0) {
         const eraseTimer = setTimeout(() => {
           setDisplayText(prev => prev.slice(0, -1));
@@ -47,14 +47,14 @@ const TextType = ({
         
         return () => clearTimeout(eraseTimer);
       } else {
-        // Move to next text
+        
         setCurrentIndex(prev => (prev + 1) % text.length);
         setIsTyping(true);
       }
     }
   }, [currentCharIndex, currentIndex, isTyping, text, typingSpeed, pauseDuration, displayText]);
 
-  // Cursor blinking effect
+  
   useEffect(() => {
     if (showCursor) {
       const cursorTimer = setInterval(() => {

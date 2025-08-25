@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ProductCard from "./ProductCard";
+import ProductInquiryPopup from "./ProductInquiryPopup";
 import { assets } from "../assets/assets";
+import Swal from "sweetalert2";
 
 const ProductRecommendations = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [showInquiryPopup, setShowInquiryPopup] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  
   const recommendedProducts = [
     {
       id: 1,
@@ -55,6 +58,7 @@ const ProductRecommendations = () => {
     }
   ];
 
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -71,116 +75,103 @@ const ProductRecommendations = () => {
     return () => observer.disconnect();
   }, []);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % Math.ceil(recommendedProducts.length / 3));
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + Math.ceil(recommendedProducts.length / 3)) % Math.ceil(recommendedProducts.length / 3));
-  };
-
   const handleViewDetails = (product) => {
-    // Navigate to product details page
     console.log("View details for:", product);
   };
 
-  const handleAddToCart = (product) => {
-    // Add to cart functionality
-    console.log("Add to cart:", product);
+  const handleGetQuote = (product) => {
+    setSelectedProduct(product);
+    setShowInquiryPopup(true);
+  };
+
+  const handleInquirySubmit = async (inquiryData) => {
+    try {
+      const response = await fetch("http://localhost:4000/product-inquiry", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inquiryData),
+      });
+
+      if (response.ok) {
+  Swal.fire({
+    title: "✅ Inquiry Sent!",
+    html: `
+      <p>Thank you for your interest in <b>${selectedProduct.name}</b>.</p>
+      <p>Our team will contact you soon at <b>${inquiryData.customer.mobile}</b>.</p>
+    `,
+    icon: "success",
+    confirmButtonText: "Great!",
+    confirmButtonColor: "#3085d6",
+  });
+  console.log(`New inquiry: Customer ${inquiryData.customer.mobile} is interested in ${selectedProduct.name}`);
+} else {
+        throw new Error("Failed to submit inquiry");
+      }
+    } catch (error) {
+      console.error("Error submitting inquiry:", error);
+      alert("Failed to submit inquiry. Please try again.");
+      throw error;
+    }
   };
 
   return (
-    <section 
-      id="product-recommendations" 
-      className="relative py-16 bg-gradient-to-br from-white via-orange-50 to-red-50 overflow-hidden"
-    >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-orange-400 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-red-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+    <>
+      <section 
+        id="product-recommendations" 
+        className="relative py-16 bg-gradient-to-br from-white via-orange-50 to-red-50 overflow-hidden"
+      >
+        {/* ... existing section content */}
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          {/* Header */}
+          <div className={`text-center mb-12 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}>
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 via-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
+              Recommended Products
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-4 rounded-full"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Discover our most popular wooden pallets and packaging solutions, carefully selected for quality and reliability.
+            </p>
+          </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className={`text-center mb-12 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 via-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
-            Recommended Products
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-4 rounded-full"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Discover our most popular wooden pallets and packaging solutions, carefully selected for quality and reliability.
-          </p>
-        </div>
-
-        {/* Products Grid */}
-        <div className="relative">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 -translate-x-4"
-          >
-            <FaChevronLeft />
-          </button>
-          
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 translate-x-4"
-          >
-            <FaChevronRight />
-          </button>
-
-          {/* Products Container */}
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {Array.from({ length: Math.ceil(recommendedProducts.length / 1) }, (_, slideIndex) => (
-                <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8">
-                    {recommendedProducts
-                      .slice(slideIndex * 3, slideIndex * 3 + 6)
-                      .map((product, index) => (
-                        <div
-                          key={product.id}
-                          className={`transition-all duration-700 ${
-                            isVisible 
-                              ? 'opacity-100 translate-y-0' 
-                              : 'opacity-0 translate-y-10'
-                          }`}
-                          style={{ transitionDelay: `${index * 150}ms` }}
-                        >
-                          <ProductCard
-                            product={product}
-                            onViewDetails={() => handleViewDetails(product)}
-                            onAddToCart={() => handleAddToCart(product)}
-                          />
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+         
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recommendedProducts.map((product, index) => (
+              <div
+                key={product.id}
+                className={`transition-all duration-700 ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <ProductCard
+                  product={product}
+                  onViewDetails={() => handleViewDetails(product)}
+                  onGetQuote={handleGetQuote} 
+                />
+              </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* View All Button */}
-        <div className={`text-center mt-12 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <button className="group relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 font-semibold">
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
-            <div className="relative z-10 flex items-center gap-2">
-              <span>View All Products</span>
-              <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
-          </button>
-        </div>
-      </div>
-    </section>
+      
+      <ProductInquiryPopup
+        isOpen={showInquiryPopup}
+        onClose={() => setShowInquiryPopup(false)}
+        product={selectedProduct}
+        onSubmit={handleInquirySubmit}
+      />
+    </>
   );
 };
 
 export default ProductRecommendations;
+
+

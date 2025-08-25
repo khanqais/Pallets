@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Contact from './pages/contact'
+import ProductPage from './pages/ProductPage'
 
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<Contact/>} />
-
+      <Route path='/product' element={<ProductPage/>}/>
      </Routes>
     </div>
   )

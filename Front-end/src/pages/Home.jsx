@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../components/Header' 
 import Footer from '../components/Footer'
-import Product from '../components/Product'
 import BusinessInfoSection from '../components/BusinessInfoSection '
 import Recommended from '../components/Recommended'
 
