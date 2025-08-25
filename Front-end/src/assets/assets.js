@@ -13,11 +13,18 @@ import wooden_5_1 from './Wooden_5.1.webp'
 import wooden_5_2 from './Wooden_5.2.webp'
 import wooden_5_3 from './Wooden_5.3.webp'
 import wooden_5_4 from './Wooden_5.4.webp'
+import wooden_6_1 from './Wooden_6.1.webp'
+import CP_1_1 from './CP_1.1.webp'
+import CP_1_2 from './CP_2.1.webp'
+import CP_1_3 from './CP_3.1.webp'
+import CP_1_4 from './CP_4.1.webp'
+import CP_1_5 from './CP_5.1.webp'
 
 
 
 export const assets = {
-    seal,wooden_1_1,wooden_2_1,wooden_3_1,wooden_4_1,wooden_5_1
+  wooden_6_1, CP_1_1,CP_1_2,CP_1_3,CP_1_4,CP_1_5,
+  seal,wooden_1_1,wooden_2_1,wooden_3_1,wooden_4_1,wooden_5_1,wooden_1_2,wooden_1_3,wooden_2_2,wooden_3_2,wooden_4_2,wooden_4_3,wooden_5_2,wooden_5_3,wooden_5_4
 }
 
 export const products = [
@@ -681,10 +688,10 @@ export const products = [
   }
 ];
 
-export const Wooden=[
+export const Wooden_pallet=[
     {
     id: 1,
-    name: "Heat Treated Wooden Pallet", //yes
+    name: "Heat Treated Wooden Pallet",
     price: "₹850 / Piece",
     size: "800 mm X 1200 mm",
     capacity: "500 kg",
