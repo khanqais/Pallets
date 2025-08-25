@@ -684,7 +684,7 @@ export const products = [
 export const Wooden=[
     {
     id: 1,
-    name: "Heat Treated Wooden Pallet",
+    name: "Heat Treated Wooden Pallet", //yes
     price: "₹850 / Piece",
     size: "800 mm X 1200 mm",
     capacity: "500 kg",
@@ -697,7 +697,7 @@ export const Wooden=[
   },
   {
     id: 2,
-    name: "",
+    name: "Molded Presswood Pallet", //yes
     price: "₹500 / Piece",
     size: "1000mm X 1000mm",
     color: "Brown",
@@ -712,42 +712,38 @@ export const Wooden=[
     image: [wooden_2_1,wooden_2_2]
   },
   {
-    id: 3,
-    name: "",
-    price: "₹600 / Piece",
-    size: "1000 mm X 1200 mm",
-    color: "Natural Wood",
-    shape: "Square",
-    woodType: "Hard Wood",
+    id: 3, 
+    name: "Molded Wooden Pallet", //yes
+    price: "₹500 / Piece",
+    size: "1100mm X 1100mm",
+    
+    shape: "Rectangular",
+    woodType: "Soft Wood",
     entryType: "2 Way",
     nails: "Standard Nails",
-    capacity: "1.2 Ton",
-    weight: "",
-    minOrderQty: 10,
+    capacity: "500 kg ",
+    minOrderQty: 20,
     description:
-      "Heavy duty hardwood pallet ideal for export and industrial use. Strong structure suitable for stacking heavy materials.",
+      "Discover the versatility and durability of our Molded Wooden Pallet, expertly crafted to meet all your storage and transportation needs. Made from high-quality wood, this pallet offers exceptional strength and stability, ensuring your goods are securely held in place. Its molded design provides a smooth surface for easy handling and minimizes the risk of damage during transit. Ideal for warehouses, retail environments, or home use, this pallet is a reliable solution for efficient organization and logistics. Upgrade your storage solutions today with our Molded Wooden Pallet and experience the perfect blend of functionality and quality",
     image: [wooden_3_1,wooden_3_2]
   },
   {
     id: 4,
-    name: "",
-    price: "₹480 / Piece",
-    size: "800 mm X 1000 mm",
-    color: "Light Brown",
+    name: "Compressed Wooden Pallet", //yes
+    price: "500  / Piece",
+    size: "1100 mm X 1100 mm",
+    color: "Brown",
     shape: "Rectangular",
     woodType: "Pine Wood",
     entryType: "4 Way",
-    nails: "Ring Nails",
-    capacity: "800 Kg",
-    weight: "",
     minOrderQty: 8,
     description:
-      "Lightweight pine pallet with 4-way entry. Suitable for general shipping and warehouse storage.",
+      "Discover the versatility and strength of our Molded Presswood Pallet, designed to meet the demands of modern logistics and storage solutions. Crafted from high-quality, eco-friendly materials, this pallet offers exceptional durability while being lightweight for easy handling. Its molded design ensures a secure and stable base for transporting goods, making it an ideal choice for warehouses, retail environments, and shipping operations. Upgrade your material handling with this reliable and sustainable option that not only enhances efficiency but also supports your commitment to environmental responsibility.",
     image: [wooden_4_1,wooden_4_2,wooden_4_3]
   },
   {
     id: 5,
-    name: "Pine Wood Pallet Collar",
+    name: "Pine Wood Pallet Collar", //yes
     price: "₹850 / Piece",
     size: "1200 x 800 mm",
     color: "Brown",
@@ -765,15 +761,14 @@ export const Wooden=[
   {
     id: 6,
     name: "",
-    price: "₹520 / Piece",
-    size: "900 mm X 1200 mm",
+    price: "₹ 980/ Piece",
+    size: "800mm X 1200mm",
     color: "Natural",
     shape: "Rectangular",
-    woodType: "Softwood & Hardwood Mix",
+    woodType: "Pinewood",
     entryType: "2 Way",
     nails: "Standard Nails",
     capacity: "900 Kg",
-    weight: "",
     minOrderQty: 6,
     description:
       "Versatile pallet suitable for warehouse and export shipping. Economical and reusable option.",

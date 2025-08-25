@@ -10,6 +10,7 @@ import {
   FaShieldAlt,
   FaSearch,
   FaChevronDown,
+  FaDownload,
 } from "react-icons/fa";
 import { assets } from "../assets/assets";
 import { NavLink } from 'react-router-dom';
@@ -57,6 +58,22 @@ const Header = () => {
     }
   };
 
+  // Download Brochure Function
+  const downloadBrochure = () => {
+    try {
+      const link = document.createElement('a');
+      link.href = '/h_k_enterprises.pdf';
+      link.download = 'HK-Enterprises-Brochure.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      alert('Brochure download started!');
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Failed to download brochure. Please try again.');
+    }
+  };
+
   return (
     <>
       {/* ✅ Top Bar - sticky */}
@@ -67,9 +84,9 @@ const Header = () => {
               {/* Left - Company Info */}
               <div className="flex items-center gap-6">
                 <div className="group">
-                  <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent hover:from-orange-600 hover:to-red-600 transition-all duration-500">
+                  <NavLink to='/' className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent hover:from-orange-600 hover:to-red-600 transition-all duration-500">
                     H.K Enterprises
-                  </h1>
+                  </NavLink>
                   <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
                     <div className="flex items-center gap-1 hover:text-orange-600 transition-colors duration-300">
                       <FaMapMarkerAlt className="text-orange-500" />
@@ -181,10 +198,10 @@ const Header = () => {
           <div className="flex items-center justify-between py-3">
             {/* Left - Navigation Menu */}
             <div className="hidden md:flex items-center">
-              <div className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
+              <NavLink to="/product" className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
                 <FaBars className="group-hover:rotate-90 transition-transform duration-300" />
                 <span className="font-semibold">Our Products</span>
-              </div>
+              </NavLink>
 
               {/* Navigation Links */}
               <nav className="flex items-center ml-8 gap-8">
@@ -196,6 +213,7 @@ const Header = () => {
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all duration-300"></div>
                 </NavLink>
 
+                {/* About Us Dropdown */}
                 <div
                   className="relative"
                   onMouseEnter={() => setAboutDropdown(true)}
@@ -209,15 +227,45 @@ const Header = () => {
                       }`}
                     />
                   </button>
+                  
+                  {/* Invisible bridge */}
+                  <div className="absolute top-full left-0 w-full h-2 bg-transparent"></div>
+                  
                   {aboutDropdown && (
-                    <div className="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50 transform transition-all duration-200 ease-out">
-                      <a
-                        href="/assets/hkpdf.pdf"
-                        download
-                        className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200 font-semibold"
+                    <div className="absolute top-full left-0 w-52 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50 transform transition-all duration-200 ease-out">
+                      <NavLink 
+                        to="/about" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
                       >
-                        Download Brochure
-                      </a>
+                        Company Overview
+                      </NavLink>
+                      <NavLink 
+                        to="/team" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
+                      >
+                        Our Team
+                      </NavLink>
+                      <NavLink 
+                        to="/mission" 
+                        className="block px-4 py-2 text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors duration-200"
+                      >
+                        Mission & Vision
+                      </NavLink>
+                      
+                      {/* Separator */}
+                      <div className="border-t border-gray-200 my-2"></div>
+                      
+                      {/* Download Brochure */}
+                      <button 
+                        onClick={downloadBrochure}
+                        className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 hover:text-orange-600 transition-all duration-200 flex items-center gap-2 group"
+                      >
+                        <FaDownload className="text-orange-500 group-hover:animate-bounce" />
+                        <span className="font-medium">Download Brochure</span>
+                        <div className="ml-auto">
+                          <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded-full">PDF</span>
+                        </div>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -255,7 +303,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* ✅ Mobile Menu */}
+      {/* ✅ Mobile Menu - COMPLETELY FIXED */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-700 ${
           menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
@@ -279,35 +327,66 @@ const Header = () => {
             </button>
           </form>
 
-          {/* Mobile Navigation */}
+          {/* ✅ Mobile Navigation - All Links Fixed */}
           <div className="space-y-3">
-            <div className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+            <NavLink 
+              to="/product" 
+              onClick={() => setMenuOpen(false)}
+              className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-700 transition-colors duration-300"
+            >
               <FaBars />
               <span className="font-semibold">Our Products</span>
-            </div>
+            </NavLink>
+            
             <NavLink
               to="/"
-              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
+              onClick={() => setMenuOpen(false)}
+              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300 font-medium"
             >
               Home
             </NavLink>
-            <div className="text-white hover:text-orange-400 py-2 transition-colors duration-300">
+            
+            {/* ✅ Fixed About Us - Now uses NavLink */}
+            <NavLink
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300 font-medium"
+            >
               About Us
-            </div>
+            </NavLink>
+            
+            {/* ✅ Fixed Contact Us - Added onClick to close menu */}
             <NavLink
               to="/contact"
-              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
+              onClick={() => setMenuOpen(false)}
+              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300 font-medium"
             >
               Contact Us
             </NavLink>
+
+            {/* Download Brochure for Mobile */}
+            <button
+              onClick={() => {
+                downloadBrochure();
+                setMenuOpen(false);
+              }}
+              className="block w-full text-left text-white hover:text-orange-400 py-2 transition-colors duration-300 font-medium flex items-center gap-2"
+            >
+              <FaDownload className="text-orange-400" />
+              <span>Download Brochure</span>
+            </button>
           </div>
 
           {/* Mobile Contact Info */}
           <div className="border-t border-gray-600 pt-4 space-y-3">
-            <div className="flex items-center gap-2 text-white">
+            <a 
+              href="tel:07942667387" 
+              className="flex items-center gap-2 text-white hover:text-green-400 transition-colors duration-300"
+            >
               <FaPhone className="text-green-400" />
               <span>Call 07942667387</span>
-            </div>
+            </a>
+            
             <button
               onClick={() => {
                 setShowMessagePopup(true);
