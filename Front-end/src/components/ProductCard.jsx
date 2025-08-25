@@ -7,7 +7,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
 
   return (
     <div className="group relative bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50 overflow-hidden">
-      {/* Image Section */}
+      
       <div className="relative overflow-hidden bg-gray-100 rounded-t-2xl">
         <img
           src={product.image}
@@ -18,7 +18,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
           onLoad={() => setImageLoaded(true)}
         />
         
-        {/* Overlay buttons */}
+        
         <div className="absolute top-3 right-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
           <button
             onClick={() => setIsLiked(!isLiked)}
@@ -39,7 +39,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
         </div>
       </div>
 
-      {/* Content Section */}
+      
       <div className="p-4 relative">
         <h3 className="font-bold text-gray-800 text-lg mb-1 truncate group-hover:text-orange-600 transition-colors duration-300">
           {product.name}
@@ -48,14 +48,14 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
           Size: {product.size}
         </p>
 
-        {/* Price and Buy Button */}
+        
         <div className="flex items-center justify-between">
           <span className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
             {product.price}
           </span>
 
           <button
-            onClick={() => onGetQuote(product)} // Pass product to parent
+            onClick={() => onGetQuote(product)} 
             className="group/btn relative overflow-hidden bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-4 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm font-semibold"
           >
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>

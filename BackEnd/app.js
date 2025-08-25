@@ -42,15 +42,15 @@ const sendWhatsAppNotification = async (orderDetails) => {
 💬 Contact customer immediately at: +91${orderDetails.customerMobile}`;
 
     const result = await twilioClient.messages.create({
-      from: 'whatsapp:+14155238886', // Twilio sandbox number
-      to: `whatsapp:+91${process.env.YOUR_WHATSAPP_NUMBER}`, // Your WhatsApp number
+      from: 'whatsapp:+14155238886', 
+      to: `whatsapp:+91${process.env.YOUR_WHATSAPP_NUMBER}`,
       body: message
     });
 
-    console.log('✅ WhatsApp notification sent successfully:', result.sid);
+    console.log('WhatsApp notification sent successfully:', result.sid);
     return true;
   } catch (error) {
-    console.error('❌ Error sending WhatsApp notification:', error);
+    console.error(' Error sending WhatsApp notification:', error);
     return false;
   }
 };
@@ -68,7 +68,7 @@ app.post('/product-inquiry', async (req, res) => {
   }
   
   try {
-    // Save inquiry
+    
     const inquiry = await saveInquiry({
       productName: product.name,
       productPrice: product.price,
@@ -102,7 +102,7 @@ app.post('/product-inquiry', async (req, res) => {
   }
 });
 
-// Your existing contact endpoint
+
 app.post("/contact", async (req, res) => {
   console.log("Received Data:",req.body);
   

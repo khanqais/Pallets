@@ -33,8 +33,6 @@ const ContactPage = () => {
       if (res.status === 200) {
         setSubmitStatus('success');
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-        
-        
         setTimeout(() => setSubmitStatus(null), 5000);
       } else {
         setSubmitStatus('error');
@@ -42,7 +40,6 @@ const ContactPage = () => {
     } catch (err) {
       console.error(err);
       setSubmitStatus('error');
-      
       setTimeout(() => setSubmitStatus(null), 5000);
     } finally {
       setIsSubmitting(false);
@@ -78,7 +75,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      {/* Animated background elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-orange-300 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -87,7 +83,6 @@ const ContactPage = () => {
 
       <div className="relative z-10 pt-24 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Animated Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent mb-6 animate-fade-in">
               Get In Touch
@@ -100,7 +95,6 @@ const ContactPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info Section */}
             <div className="space-y-8">
               <div className="relative">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
@@ -115,7 +109,6 @@ const ContactPage = () => {
                   className={`group relative bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50`}
                   style={{ animationDelay: item.delay }}
                 >
-                  {/* Gradient background on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 group-hover:opacity-50 rounded-2xl transition-opacity duration-500`}></div>
                   
                   <div className="relative z-10 flex items-start gap-4">
@@ -128,12 +121,10 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  {/* Animated border */}
                   <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-500"></div>
                 </div>
               ))}
 
-              {/* Additional Info Card */}
               <div className="relative bg-gradient-to-br from-orange-500 to-red-600 p-6 rounded-2xl shadow-xl text-white">
                 <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
                 <div className="relative z-10">
@@ -147,7 +138,6 @@ const ContactPage = () => {
               </div>
             </div>
 
-            {/* Contact Form */}
             <div className="relative">
               <div className="bg-white/90 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white/50">
                 <div className="mb-6">
@@ -157,7 +147,6 @@ const ContactPage = () => {
                   </h2>
                 </div>
 
-                {/* Success/Error Messages */}
                 {submitStatus === 'success' && (
                   <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-2 animate-fade-in">
                     <FaCheckCircle className="text-green-600" />
@@ -172,7 +161,6 @@ const ContactPage = () => {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Form Fields */}
                   {[
                     { name: 'name', placeholder: 'Full Name', type: 'text' },
                     { name: 'email', placeholder: 'Email Address', type: 'email' },
@@ -203,7 +191,6 @@ const ContactPage = () => {
                     </div>
                   ))}
 
-                  {/* Message Textarea */}
                   <div className="relative group">
                     <textarea
                       name="message"
@@ -226,7 +213,6 @@ const ContactPage = () => {
                     }`}></div>
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -234,7 +220,6 @@ const ContactPage = () => {
                       isSubmitting ? '' : 'hover:animate-pulse'
                     }`}
                   >
-                    {/* Button shine effect */}
                     <div className="absolute inset-0 bg-white/20 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
                     
                     <div className="relative z-10 flex items-center justify-center gap-2">

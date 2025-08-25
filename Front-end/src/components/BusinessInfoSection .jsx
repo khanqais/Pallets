@@ -89,7 +89,7 @@ const BusinessInfoSection = () => {
       id="business-info" 
       className="relative py-16 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 overflow-hidden"
     >
-      {/* Animated background elements */}
+      
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-20 w-72 h-72 bg-orange-300 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -97,14 +97,14 @@ const BusinessInfoSection = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header Section */}
+        
         <div className="text-center mb-12">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-sm uppercase tracking-wider text-gray-600 mb-3 font-semibold">
               WELCOME TO
             </h2>
             
-            {/* Updated H.K Enterprises with TextType */}
+            
             <div className="text-4xl md:text-6xl font-bold mb-4 min-h-[4rem] md:min-h-[6rem] flex items-center justify-center">
               <TextType 
                 text={[
@@ -124,7 +124,7 @@ const BusinessInfoSection = () => {
             
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6 rounded-full"></div>
             
-            {/* Read More Toggle */}
+            
             <div className="max-w-2xl mx-auto">
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
                 GET IN TOUCH WITH US FOR BEST DEALS
@@ -148,7 +148,7 @@ const BusinessInfoSection = () => {
           </div>
         </div>
 
-        {/* Business Info Grid */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {businessData.map((item, index) => (
             <div
@@ -161,29 +161,29 @@ const BusinessInfoSection = () => {
                 transitionDelay: item.delay 
               }}
             >
-              {/* Gradient background on hover */}
+              
               <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 group-hover:opacity-50 rounded-2xl transition-opacity duration-500`}></div>
               
               <div className="relative z-10">
-                {/* Icon */}
+                
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300 flex items-center justify-center mb-4`}>
                   <item.icon className="text-white text-xl" />
                 </div>
 
-                {/* Content */}
+               
                 <div>
                   <h3 className="font-bold text-gray-800 text-lg mb-2">{item.title}</h3>
                   <p className="text-gray-700 font-medium leading-relaxed">{item.value}</p>
                 </div>
               </div>
 
-              {/* Animated border */}
+              
               <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r transition-all duration-500"></div>
             </div>
           ))}
         </div>
 
-        {/* Trust Seal Section */}
+        
         <div className="mt-12 text-center">
           <div className={`inline-flex items-center gap-4 bg-white/90 backdrop-blur-lg px-6 py-4 rounded-2xl shadow-xl border border-white/50 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'

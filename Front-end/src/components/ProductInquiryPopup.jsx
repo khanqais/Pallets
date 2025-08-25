@@ -90,11 +90,11 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
 
   if (!isOpen) return null;
 
-  // Use ReactDOM.createPortal to render at document body level for full screen
+  
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fadeIn">
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-6xl max-h-[95vh] overflow-y-auto transform animate-slideIn">
-        {/* Close Button */}
+        
         <button
           onClick={onClose}
           className="absolute top-8 right-8 text-gray-400 hover:text-gray-600 text-3xl hover:scale-110 transition-all duration-300 z-10 bg-white rounded-full p-2 shadow-lg"
@@ -102,7 +102,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
           <FaTimes />
         </button>
 
-        {/* Progress Indicator */}
+        
         <div className="flex justify-center pt-8 pb-4">
           <div className="flex items-center space-x-4">
             {[1, 2, 3].map((step) => (
@@ -124,7 +124,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
           </div>
         </div>
 
-        {/* Step Labels */}
+        
         <div className="flex justify-center pb-8">
           <div className="flex justify-between w-80 text-sm">
             <span className={currentStep >= 1 ? 'text-teal-600 font-semibold' : 'text-gray-500'}>
@@ -139,10 +139,10 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
           </div>
         </div>
 
-        {/* Step 1: Mobile Number */}
+       
         {currentStep === 1 && (
           <div className="px-12 pb-12">
-            {/* Product Header */}
+            
             <div className="text-center mb-10">
               <div className="flex justify-center mb-6">
                 <img 
@@ -172,7 +172,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
               </div>
             </div>
 
-            {/* Form Section */}
+            
             <div className="max-w-2xl mx-auto">
               <div className="text-center mb-8">
                 <h2 className="text-4xl font-bold text-gray-800 mb-3">
@@ -183,7 +183,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                 </p>
               </div>
 
-              {/* Mobile Input */}
+              
               <div className="mb-8">
                 <label className="block text-xl font-semibold text-gray-700 mb-4">
                   Mobile Number
@@ -210,7 +210,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                 </p>
               </div>
 
-              {/* Submit Button */}
+            
               <button
                 onClick={handleNext}
                 disabled={!isStep1Valid}
@@ -222,7 +222,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
           </div>
         )}
 
-        {/* Step 2: Product Requirements */}
+        
         {currentStep === 2 && (
           <div className="px-12 pb-12">
             {/* Product Summary */}
@@ -252,7 +252,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
               </div>
 
               <div className="space-y-10">
-                {/* Quantity */}
+               
                 <div>
                   <label className="block text-xl font-semibold text-gray-700 mb-4">
                     Quantity Required:
@@ -277,7 +277,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                   </div>
                 </div>
 
-                {/* I am interested in */}
+                
                 <div>
                   <label className="block text-xl font-semibold text-gray-700 mb-4">
                     I am interested in:
@@ -299,7 +299,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                   </div>
                 </div>
 
-                {/* Size */}
+                
                 <div>
                   <label className="block text-xl font-semibold text-gray-700 mb-4">
                     Size (Length × Width):
@@ -321,7 +321,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                   </div>
                 </div>
 
-                {/* Navigation Buttons */}
+               
                 <div className="flex gap-6 justify-center pt-8">
                   <button
                     onClick={handleBack}
@@ -344,10 +344,10 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
           </div>
         )}
 
-        {/* Step 3: Final Requirements */}
+        
         {currentStep === 3 && (
           <div className="px-12 pb-12">
-            {/* Product Summary */}
+            
             <div className="bg-gray-50 rounded-2xl p-6 mb-10 mx-auto max-w-4xl">
               <div className="flex items-center justify-center gap-8">
                 <img 
@@ -373,7 +373,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                 </p>
               </div>
 
-              {/* Requirements */}
+              
               <div className="mb-10">
                 <label className="block text-xl font-semibold text-gray-700 mb-4">
                   Additional Requirements (Optional):
@@ -387,7 +387,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                 />
               </div>
 
-              {/* Order Summary */}
+              
               <div className="bg-teal-50 border-2 border-teal-200 rounded-2xl p-6 mb-8">
                 <h3 className="text-xl font-bold text-teal-800 mb-4">Order Summary:</h3>
                 <div className="space-y-2 text-teal-700">
@@ -398,7 +398,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
                 </div>
               </div>
 
-              {/* Navigation Buttons */}
+              
               <div className="flex gap-6 justify-center">
                 <button
                   onClick={handleBack}

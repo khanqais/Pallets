@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "./ProductCard"; // Your existing component
-import ProductInquiryPopup from "./ProductInquiryPopup"; // Your existing popup
+import ProductCard from "./ProductCard"; 
+import ProductInquiryPopup from "./ProductInquiryPopup";
 import { assets } from "../assets/assets";
 
 const ProductCategories = () => {
@@ -233,7 +233,7 @@ const ProductCategories = () => {
 
   const handleViewDetails = (product) => {
     console.log("View details for:", product);
-    // You can implement product detail page navigation here
+    
   };
 
   const handleInquirySubmit = async (inquiryData) => {
@@ -258,7 +258,7 @@ const ProductCategories = () => {
     }
   };
 
-  // Scroll animation observer
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -373,18 +373,7 @@ const ProductCategories = () => {
             )}
           </div>
 
-          {/* View All Button */}
-          {/* <div className={`text-center mt-12 transition-all duration-1000 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <button className="group relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 font-semibold">
-              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
-              <div className="relative z-10 flex items-center gap-2">
-                <span>View All {selectedCategory}</span>
-                <span>→</span>
-              </div>
-            </button>
-          </div> */}
+         
         </div>
       </section>
 

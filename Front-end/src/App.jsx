@@ -1,20 +1,28 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Contact from './pages/contact'
-import ProductPage from './pages/ProductPage'
-
+import React from 'react';
+import { Routes, Route } from 'react-router-dom'; 
+import ScrollToTop from './components/ScrollToTop'; 
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import ProductPage from './pages/ProductPage';
+import Contact from './pages/Contact';
 
 const App = () => {
   return (
-    <div>
-     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Contact/>} />
-      <Route path='/product' element={<ProductPage/>}/>
-     </Routes>
-    </div>
-  )
+    <>
+      <ScrollToTop />
+      
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<ProductPage />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        
+        <Footer />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;

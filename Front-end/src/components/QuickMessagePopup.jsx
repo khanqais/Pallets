@@ -78,7 +78,7 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
               placeholder="Phone"
               className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all duration-300"
             />
-            {/* ✅ Fixed - lowercase name and correct type */}
+            
             <input
               name="subject"
               type="text"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom'; 
 import axios from "axios";
 import {
   FaMapMarkerAlt,
@@ -21,6 +22,10 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [showMessagePopup, setShowMessagePopup] = useState(false);
+  
+
+  const location = useLocation();
+  const isProductPage = location.pathname === '/product';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +39,7 @@ const Header = () => {
     e.preventDefault();
     if (searchQuery.trim()) {
       console.log("Searching for:", searchQuery);
+      
     }
   };
 
@@ -59,12 +65,12 @@ const Header = () => {
 
   return (
     <>
-      {/* ✅ Top Bar - sticky */}
+      
       <div className="sticky top-0 z-40 bg-white shadow-lg">
         <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between">
-              {/* Left - Company Info */}
+              
               <div className="flex items-center gap-6">
                 <div className="group">
                   <NavLink to='/' className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent hover:from-orange-600 hover:to-red-600 transition-all duration-500">
@@ -85,7 +91,7 @@ const Header = () => {
                 </div>
               </div>
 
-              {/* Center - Trust Seal */}
+              
               <a
                 href="https://trustseal.indiamart.com/members/hk-enterprisesnavimumbai"
                 target="_blank"
@@ -112,9 +118,9 @@ const Header = () => {
                 </div>
               </a>
 
-              {/* Right - Contact Info */}
+              
               <div className="hidden md:flex items-center gap-4">
-                {/* Phone */}
+                
                 <div className="relative group">
                   <div className="absolute -inset-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-20 transition-all duration-500 blur-lg"></div>
                   <div className="relative bg-white border-2 border-gray-200 hover:border-green-400 rounded-xl px-4 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
@@ -135,7 +141,7 @@ const Header = () => {
                   </div>
                 </div>
 
-                {/* Email Button */}
+                
                 <button
                   onClick={() => setShowMessagePopup(true)}
                   className="relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
@@ -148,7 +154,7 @@ const Header = () => {
                 </button>
               </div>
 
-              {/* Mobile Menu Button */}
+              
               <button
                 className="md:hidden relative text-gray-700 text-2xl p-2 rounded-xl hover:bg-orange-100 transition-all duration-300"
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -171,7 +177,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* ✅ Navigation Bar - scrolls away */}
+      
       <div
         className={`transition-all duration-500 ${
           scrolled ? "bg-gray-800/95 backdrop-blur-lg" : "bg-gray-800"
@@ -179,14 +185,14 @@ const Header = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-3">
-            {/* Left - Navigation Menu */}
+            
             <div className="hidden md:flex items-center">
               <NavLink to="/product" className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
                 <FaBars className="group-hover:rotate-90 transition-transform duration-300" />
                 <span className="font-semibold">Our Products</span>
               </NavLink>
 
-              {/* Navigation Links */}
+              
               <nav className="flex items-center ml-8 gap-8">
                 <NavLink
                   to="/"
@@ -232,70 +238,84 @@ const Header = () => {
               </nav>
             </div>
 
-            {/* Right - Search Bar */}
-            <div className="hidden md:block">
-              <form onSubmit={handleSearch} className="relative">
-                <input
-                  type="text"
-                  placeholder="Search Products/Services"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-80 pl-4 pr-12 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-0 top-0 h-full px-4 bg-orange-600 hover:bg-orange-700 text-white rounded-r-lg transition-colors duration-300 flex items-center"
-                >
-                  <FaSearch />
-                  <span className="ml-2 font-medium">Search</span>
-                </button>
-              </form>
-            </div>
+            
+            {isProductPage && (
+              <div className="hidden md:block">
+                <form onSubmit={handleSearch} className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search Products/Services"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-80 pl-4 pr-12 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-0 top-0 h-full px-4 bg-orange-600 hover:bg-orange-700 text-white rounded-r-lg transition-colors duration-300 flex items-center"
+                  >
+                    <FaSearch />
+                    <span className="ml-2 font-medium">Search</span>
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* ✅ Mobile Menu */}
+     
       <div
         className={`md:hidden overflow-hidden transition-all duration-700 ${
           menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="bg-gray-800 px-6 py-6 space-y-4">
-          {/* Mobile Search */}
-          <form onSubmit={handleSearch} className="flex">
-            <input
-              type="text"
-              placeholder="Search Products/Services"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-            <button
-              type="submit"
-              className="px-4 bg-orange-600 text-white rounded-r-lg hover:bg-orange-700 transition-colors duration-300"
-            >
-              <FaSearch />
-            </button>
-          </form>
+          
+          {isProductPage && (
+            <form onSubmit={handleSearch} className="flex">
+              <input
+                type="text"
+                placeholder="Search Products/Services"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              />
+              <button
+                type="submit"
+                className="px-4 bg-orange-600 text-white rounded-r-lg hover:bg-orange-700 transition-colors duration-300"
+              >
+                <FaSearch />
+              </button>
+            </form>
+          )}
 
-          {/* Mobile Navigation */}
+          
           <div className="space-y-3">
-            <NavLink to="/product" className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+            <NavLink 
+              to="/product" 
+              onClick={() => setMenuOpen(false)}
+              className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+            >
               <FaBars />
               <span className="font-semibold">Our Products</span>
             </NavLink>
             <NavLink
               to="/"
+              onClick={() => setMenuOpen(false)}
               className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
             >
               Home
             </NavLink>
-            <div className="text-white hover:text-orange-400 py-2 transition-colors duration-300">
+            <NavLink
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
+            >
               About Us
-            </div>
+            </NavLink>
             <NavLink
               to="/contact"
+              onClick={() => setMenuOpen(false)}
               className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
             >
               Contact Us
@@ -304,10 +324,13 @@ const Header = () => {
 
           {/* Mobile Contact Info */}
           <div className="border-t border-gray-600 pt-4 space-y-3">
-            <div className="flex items-center gap-2 text-white">
+            <a 
+              href="tel:07942667387" 
+              className="flex items-center gap-2 text-white hover:text-green-400 transition-colors duration-300"
+            >
               <FaPhone className="text-green-400" />
               <span>Call 07942667387</span>
-            </div>
+            </a>
             <button
               onClick={() => {
                 setShowMessagePopup(true);
@@ -322,7 +345,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* ✅ Quick Message Popup */}
+      
       <QuickMessagePopup
         isOpen={showMessagePopup}
         onClose={() => setShowMessagePopup(false)}

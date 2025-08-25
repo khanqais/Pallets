@@ -122,10 +122,10 @@ const ProductRecommendations = () => {
         id="product-recommendations" 
         className="relative py-16 bg-gradient-to-br from-white via-orange-50 to-red-50 overflow-hidden"
       >
-        {/* ... existing section content */}
+       
         
         <div className="relative z-10 max-w-7xl mx-auto px-4">
-          {/* Header */}
+         
           <div className={`text-center mb-12 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
