@@ -14,7 +14,7 @@ const Home = () => {
         <Recommended/>
       </main>
       
-      <Footer/>
+      
     </div>
   )
 }

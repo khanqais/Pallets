@@ -19,11 +19,19 @@ import CP_1_2 from './CP_2.1.webp'
 import CP_1_3 from './CP_3.1.webp'
 import CP_1_4 from './CP_4.1.webp'
 import CP_1_5 from './CP_5.1.webp'
+import Ton_1_1 from './Ton_1.1.webp'
+import Ton_2_1 from './Ton_2.1.webp'
+import Ton_3_1 from './Ton_3.1.webp'
+import Ton_4_1 from './Ton_4.1.webp'
+import Indus_1 from './Indus_1.webp'
+import Indus_2 from './Indus_2.webp'
+import Indus_3 from './Indus_3.webp'
+import Indus_4 from './Indus_4.webp'
 
 
 
 export const assets = {
-  wooden_6_1, CP_1_1,CP_1_2,CP_1_3,CP_1_4,CP_1_5,
+  wooden_6_1, CP_1_1,CP_1_2,CP_1_3,CP_1_4,CP_1_5,Ton_1_1,Ton_2_1,Ton_3_1,Ton_4_1,Indus_1,Indus_2,Indus_3,Indus_4,
   seal,wooden_1_1,wooden_2_1,wooden_3_1,wooden_4_1,wooden_5_1,wooden_1_2,wooden_1_3,wooden_2_2,wooden_3_2,wooden_4_2,wooden_4_3,wooden_5_2,wooden_5_3,wooden_5_4
 }
 

@@ -1,12 +1,25 @@
 import React from "react";
 import { FaFacebookF, FaLinkedinIn, FaArrowRight } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleProductClick = (e) => {
+    e.preventDefault();
+    navigate('/product');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleViewAllClick = (e) => {
+    e.preventDefault();
+    navigate('/product');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-      
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -15,7 +28,6 @@ const Footer = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-         
           <div className="group">
             <div className="relative mb-6">
               <h3 className="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
@@ -24,16 +36,7 @@ const Footer = () => {
               <div className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-500"></div>
             </div>
             <ul className="space-y-3">
-              <li>
-                <a href="/about" className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="/sitemap" className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block">
-                  Sitemap
-                </a>
-              </li>
+              
               <li>
                 <a href="/contact" className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block">
                   Contact Us
@@ -42,7 +45,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          
           <div className="md:col-span-2 group">
             <div className="relative mb-6">
               <h3 className="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
@@ -56,24 +58,22 @@ const Footer = () => {
                 "Wooden Pallets", 
                 "Pine Wood Pallet",
                 "Industrial Pallet",
-                "Wooden Packaging Box & Crates",
-                "Wood Pallet",
-                "Epal & Euro Pallets", 
-                "Four Way Wooden Pallets"
               ].map((product, index) => (
-                <NavLink to='/product'
+                <a
                   key={index}
                   href="#"
+                  onClick={handleProductClick}
                   className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block p-2 rounded-lg hover:bg-white/5 backdrop-blur-sm"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   {product}
-                </NavLink>
+                </a>
               ))}
             </div>
             <div className="mt-6">
               <a
                 href="#"
+                onClick={handleViewAllClick}
                 className="group/link inline-flex items-center text-orange-400 font-semibold hover:text-orange-300 transition-all duration-300 bg-gradient-to-r from-orange-500/10 to-red-500/10 px-4 py-2 rounded-full border border-orange-500/20 hover:border-orange-400/40 hover:shadow-lg hover:shadow-orange-500/20"
               >
                 View All Products
@@ -82,7 +82,6 @@ const Footer = () => {
             </div>
           </div>
 
-          
           <div className="group">
             <div className="relative mb-6">
               <h3 className="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
@@ -122,7 +121,6 @@ const Footer = () => {
           </div>
         </div>
 
-        
         <div className="relative border-t border-gray-700/50 pt-8">
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
           <div className="text-center">

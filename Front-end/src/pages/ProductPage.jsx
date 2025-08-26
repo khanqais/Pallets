@@ -9,7 +9,7 @@ const ProductPage = () => {
    <main>
     <ProductCategories/>
    </main>
-   <Footer/>
+   
 
    </>
   )

@@ -157,12 +157,12 @@ const ProductCategories = () => {
         }
     ],
     "Pine Wood Pallet": [
-      {
+      { 
         id: 7,
         name: "3 Ton Pinewood Pallet",
-        price: "₹1,200",
-        image: "https://images.unsplash.com/photo-1572358594638-12a45d0d6929?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        size: "1400mm x 1200mm",
+        price: "₹1050",
+        image: assets.Ton_1_1,
+        size: "1200mm X 1000mm",
         shape: "Rectangular",
         woodType: "Pine Wood",
         capacity: "3 Ton"
@@ -171,8 +171,8 @@ const ProductCategories = () => {
         id: 8,
         name: "2 Ton Pinewood Pallet",
         price: "₹1,000",
-        image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        size: "1200mm x 1000mm",
+        image: assets.Ton_2_1,
+        size: "800mm X 1200mm",
         shape: "Rectangular",
         woodType: "Pine Wood",
         capacity: "2 Ton"
@@ -180,9 +180,19 @@ const ProductCategories = () => {
       {
         id: 9,
         name: "1 Ton Pinewood Pallet",
-        price: "₹800",
-        image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        size: "1000mm x 800mm",
+        price: "₹850 ",
+        image: assets.Ton_3_1,
+        size: "1200 mm X 1000 mm",
+        shape: "Rectangular",
+        woodType: "Pine Wood",
+        capacity: "1 Ton"
+      },
+      {
+        id: 10,
+        name: "0.5 Ton Pinewood Pallet",
+        price: "₹500  ",
+        image: assets.Ton_4_1,
+        size: "1200 mm X 1000 mm",
         shape: "Rectangular",
         woodType: "Pine Wood",
         capacity: "1 Ton"
@@ -192,32 +202,42 @@ const ProductCategories = () => {
       {
         id: 10,
         name: "Industrial Wooden Pallet",
-        price: "₹1,100",
-        image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        size: "1400mm x 1000mm",
+        price: "₹750",
+        image: assets.Indus_1,
+        size: "1200mm X 1000mm",
         shape: "Rectangular",
-        woodType: "Hard Wood",
+        woodType: "Soft Wood",
         capacity: "2.5 Ton"
       },
       {
         id: 11,
         name: "Packaging Wooden Pallet",
-        price: "₹900",
-        image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        size: "1200mm x 800mm",
+        price: "₹600 ",
+        image: assets.Indus_2,
+        size: "1300mm X 1100mm",
         shape: "Rectangular",
-        woodType: "Mixed Wood",
-        capacity: "1.5 Ton"
+        woodType: "Soft Wood",
+        capacity: "1 Ton"
       },
       {
         id: 12,
         name: "Export Wooden Pallet",
-        price: "₹1,300",
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-        size: "1200mm x 1000mm",
-        shape: "Rectangular",
+        price: "₹800",
+        image: assets.Indus_3,
+        size: "1100mm X 1100mm",
+        shape: "Square",
         woodType: "Heat Treated Wood",
-        capacity: "2 Ton"
+        capacity: "1 Ton"
+      },
+      {
+        id: 12,
+        name: "Export Wooden Pallet",
+        price: "₹800",
+        image: assets.Indus_4,
+        size: "800 mm X 1200 mm",
+        shape: "Square",
+        woodType: "Soft Wood",
+        capacity: "1 Ton"
       }
     ]
   };
@@ -353,7 +373,7 @@ const ProductCategories = () => {
                     transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
                   }}
                 >
-                  {/* ✅ Using your existing ProductCard */}
+                  
                   <ProductCard
                     product={product}
                     onViewDetails={() => handleViewDetails(product)}
@@ -389,3 +409,7 @@ const ProductCategories = () => {
 };
 
 export default ProductCategories;
+
+
+
+

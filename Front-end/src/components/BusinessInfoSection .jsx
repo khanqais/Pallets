@@ -197,7 +197,15 @@ const BusinessInfoSection = () => {
               </div>
             </div>
             <div className="text-left">
-              <div className="text-xl font-bold text-gray-800">Trustseal Verified</div>
+              <a
+                href="https://trustseal.indiamart.com/members/hk-enterprisesnavimumbai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block"
+              >
+                <div className="text-xl font-bold text-gray-800">Trustseal Verified</div>
+              </a>
+              
               <div className="text-orange-600 font-semibold">IndiaMART Certified</div>
             </div>
           </div>

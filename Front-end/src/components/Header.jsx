@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom'; 
+import { useLocation, useNavigate } from 'react-router-dom'; 
 import axios from "axios";
 import {
   FaMapMarkerAlt,
@@ -19,12 +19,13 @@ import QuickMessagePopup from './QuickMessagePopup';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutDropdown, setAboutDropdown] = useState(false);
+  const [mobileAboutDropdown, setMobileAboutDropdown] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [showMessagePopup, setShowMessagePopup] = useState(false);
-  
 
   const location = useLocation();
+  const navigate = useNavigate();
   const isProductPage = location.pathname === '/product';
 
   useEffect(() => {
@@ -39,7 +40,6 @@ const Header = () => {
     e.preventDefault();
     if (searchQuery.trim()) {
       console.log("Searching for:", searchQuery);
-      
     }
   };
 
@@ -63,14 +63,20 @@ const Header = () => {
     }
   };
 
+  const handleMobileNavClick = (path) => {
+    setMenuOpen(false);
+    setTimeout(() => {
+      navigate(path);
+      window.scrollTo(0, 0);
+    }, 100);
+  };
+
   return (
     <>
-      
       <div className="sticky top-0 z-40 bg-white shadow-lg">
         <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between">
-              
               <div className="flex items-center gap-6">
                 <div className="group">
                   <NavLink to='/' className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent hover:from-orange-600 hover:to-red-600 transition-all duration-500">
@@ -91,7 +97,6 @@ const Header = () => {
                 </div>
               </div>
 
-              
               <a
                 href="https://trustseal.indiamart.com/members/hk-enterprisesnavimumbai"
                 target="_blank"
@@ -118,9 +123,7 @@ const Header = () => {
                 </div>
               </a>
 
-              
               <div className="hidden md:flex items-center gap-4">
-                
                 <div className="relative group">
                   <div className="absolute -inset-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-20 transition-all duration-500 blur-lg"></div>
                   <div className="relative bg-white border-2 border-gray-200 hover:border-green-400 rounded-xl px-4 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
@@ -141,7 +144,6 @@ const Header = () => {
                   </div>
                 </div>
 
-                
                 <button
                   onClick={() => setShowMessagePopup(true)}
                   className="relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
@@ -154,7 +156,6 @@ const Header = () => {
                 </button>
               </div>
 
-              
               <button
                 className="md:hidden relative text-gray-700 text-2xl p-2 rounded-xl hover:bg-orange-100 transition-all duration-300"
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -177,7 +178,6 @@ const Header = () => {
         </div>
       </div>
 
-      
       <div
         className={`transition-all duration-500 ${
           scrolled ? "bg-gray-800/95 backdrop-blur-lg" : "bg-gray-800"
@@ -185,14 +185,12 @@ const Header = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-3">
-            
             <div className="hidden md:flex items-center">
               <NavLink to="/product" className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
                 <FaBars className="group-hover:rotate-90 transition-transform duration-300" />
                 <span className="font-semibold">Our Products</span>
               </NavLink>
 
-              
               <nav className="flex items-center ml-8 gap-8">
                 <NavLink
                   to="/"
@@ -239,80 +237,64 @@ const Header = () => {
             </div>
 
             
-            {isProductPage && (
-              <div className="hidden md:block">
-                <form onSubmit={handleSearch} className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search Products/Services"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-80 pl-4 pr-12 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300"
-                  />
-                  <button
-                    type="submit"
-                    className="absolute right-0 top-0 h-full px-4 bg-orange-600 hover:bg-orange-700 text-white rounded-r-lg transition-colors duration-300 flex items-center"
-                  >
-                    <FaSearch />
-                    <span className="ml-2 font-medium">Search</span>
-                  </button>
-                </form>
-              </div>
-            )}
           </div>
         </div>
       </div>
 
-     
+
+
       <div
         className={`md:hidden overflow-hidden transition-all duration-700 ${
           menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="bg-gray-800 px-6 py-6 space-y-4">
+        <div className="sticky bg-gray-800 px-6 py-6 space-y-4">
           
-          {isProductPage && (
-            <form onSubmit={handleSearch} className="flex">
-              <input
-                type="text"
-                placeholder="Search Products/Services"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <button
-                type="submit"
-                className="px-4 bg-orange-600 text-white rounded-r-lg hover:bg-orange-700 transition-colors duration-300"
-              >
-                <FaSearch />
-              </button>
-            </form>
-          )}
 
-          
           <div className="space-y-3">
-            <NavLink 
-              to="/product" 
-              onClick={() => setMenuOpen(false)}
-              className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+            <button 
+              onClick={() => handleMobileNavClick('/product')}
+              className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 w-full text-left"
             >
               <FaBars />
               <span className="font-semibold">Our Products</span>
-            </NavLink>
-            <NavLink
-              to="/"
-              onClick={() => setMenuOpen(false)}
-              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
+            </button>
+            <button
+              onClick={() => handleMobileNavClick('/')}
+              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300 w-full text-left"
             >
               Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              onClick={() => setMenuOpen(false)}
-              className="block text-white hover:text-orange-400 py-2 transition-colors duration-300"
-            >
-              About Us
-            </NavLink>
+            </button>
+            
+            <div>
+              <button 
+                onClick={() => setMobileAboutDropdown(!mobileAboutDropdown)}
+                className="flex items-center gap-1 text-white hover:text-orange-400 font-medium transition-all duration-300 py-2 w-full text-left"
+              >
+                About Us
+                <FaChevronDown
+                  className={`transition-transform duration-300 ${
+                    mobileAboutDropdown ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {mobileAboutDropdown && (
+                <div className="ml-4 mt-2">
+                  <a
+                    href='/h_k_enterprises.pdf'
+                    download
+                    onClick={() => {
+                      setMobileAboutDropdown(false);
+                      setMenuOpen(false);
+                    }}
+                    className="block text-orange-400 hover:text-orange-300 py-2 transition-colors duration-200 font-medium"
+                  >
+                    Download Brochure
+                  </a>
+                </div>
+              )}
+            </div>
+
             <NavLink
               to="/contact"
               onClick={() => setMenuOpen(false)}
@@ -322,7 +304,6 @@ const Header = () => {
             </NavLink>
           </div>
 
-          {/* Mobile Contact Info */}
           <div className="border-t border-gray-600 pt-4 space-y-3">
             <a 
               href="tel:07942667387" 
@@ -345,14 +326,12 @@ const Header = () => {
         </div>
       </div>
 
-      
       <QuickMessagePopup
         isOpen={showMessagePopup}
         onClose={() => setShowMessagePopup(false)}
         onSubmit={handleMessageSubmit}
       />
 
-      {/* Animations */}
       <style jsx="true">{`
         @keyframes fadeIn {
           from {
