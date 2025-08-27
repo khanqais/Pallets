@@ -15,6 +15,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/',(req,res)=>{
+  res.send("hii mom")
+})
+
 
 const validateInquiryData = (data) => {
   const errors = [];
@@ -264,13 +268,7 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'OK', 
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  });
-});
+
 
 app.use((req, res) => {
   res.status(404).json({ 
@@ -302,7 +300,7 @@ const start = async () => {
     
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`Health check: http://localhost:${PORT}/health`);
+      
       console.log(`📱 Twilio configured: ${!!process.env.TWILIO_ACCOUNT_SID}`);
       console.log(`📧 Email configured: ${!!process.env.MY_EMAIL}`);
     });
