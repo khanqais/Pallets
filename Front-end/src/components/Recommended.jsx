@@ -68,7 +68,7 @@ const ProductRecommendations = () => {
       },
       { threshold: 0.1 }
     );
-
+//new
     const element = document.getElementById("product-recommendations");
     if (element) observer.observe(element);
 
