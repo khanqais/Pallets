@@ -28,7 +28,7 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      const res = await axios.post("http://localhost:4000/contact",
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact`,
         formData
       );
       if (res.status === 200) {

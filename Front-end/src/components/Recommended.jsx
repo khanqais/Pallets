@@ -86,7 +86,7 @@ const ProductRecommendations = () => {
 
   const handleInquirySubmit = async (inquiryData) => {
     try {
-      const response = await fetch("http://localhost:4000/product-inquiry", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/product-inquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -46,7 +46,7 @@ const Header = () => {
 
   const handleMessageSubmit = async (formData) => {
     try {
-      const response = await axios.post("http://localhost:4000/contact", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
