@@ -15,6 +15,7 @@ import {
 import { assets } from "../assets/assets";
 import { NavLink } from 'react-router-dom';
 import QuickMessagePopup from './QuickMessagePopup'; 
+import Swal from "sweetalert2";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,8 +55,25 @@ const Header = () => {
       });
 
       if (response.status === 200) {
-        alert("Message sent successfully! We'll get back to you soon.");
+        Swal.fire({
+            title: "✅ Message Sent!",
+            html: `
+              <p>We'll get back to you soon.</p>
+            `,
+            icon: "success",
+            confirmButtonText: "Great!",
+            confirmButtonColor: "#3085d6",
+          });
       }
+     
+          
+          
+
+      
+      
+
+
+
     } catch (error) {
       console.error("Error sending message:", error);
       alert("Failed to send message. Please try again.");

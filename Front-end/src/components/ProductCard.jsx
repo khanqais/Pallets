@@ -7,7 +7,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
 
   return (
     <div className="group relative bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50 overflow-hidden">
-      
+    
       <div className="relative overflow-hidden bg-gray-100 rounded-t-2xl">
         <img
           src={product.image}
