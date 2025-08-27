@@ -40,7 +40,7 @@ const ProductRecommendations = () => {
       name: "Four Way Wooden Pallets",
       price: "₹1,450",
       size: "1200mm x 1000mm",
-      image: assets.wooden_4_1
+      image: assets.fourway
     },
     {
       id: 5,
@@ -54,7 +54,7 @@ const ProductRecommendations = () => {
       name: "Wooden Packaging Box",
       price: "₹650",
       size: "600mm x 400mm",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+      image: assets.wooden_pakage
     }
   ];
 
