@@ -102,7 +102,7 @@ const Header = () => {
                   </NavLink>
                   <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
                     <a 
-                      href="https://maps.app.goo.gl/SEDxS4gSaJaejMdC9" 
+                      href="https://maps.app.goo.gl/TGrDPwFup993fTww8" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 hover:text-orange-600 transition-colors duration-300 cursor-pointer"
