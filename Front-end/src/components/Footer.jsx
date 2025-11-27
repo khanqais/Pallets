@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebookF, FaLinkedinIn, FaArrowRight } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaArrowRight, FaMapMarkerAlt } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -36,10 +36,28 @@ const Footer = () => {
               <div className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-500"></div>
             </div>
             <ul className="space-y-3">
-              
               <li>
                 <a href="/contact" className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block">
                   Contact Us
+                </a>
+              </li>
+              <li className="mt-6">
+                <a 
+                  href="https://maps.app.goo.gl/SEDxS4gSaJaejMdC9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-orange-400 transition-all duration-300 group/addr"
+                >
+                  <div className="flex items-start gap-2">
+                    <FaMapMarkerAlt className="text-orange-500 mt-1 flex-shrink-0" />
+                    <div className="text-sm">
+                      
+                      <div className="font-semibold">Shidhi vinayak street, Mumbra,</div>
+                      <div> Panvel Hwy, Dahisar, Mumbra</div>
+                      <div> Navi Mumbai, Maharashtra 400612</div>
+                      {/* <div>Maharashtra, India</div> */}
+                    </div>
+                  </div>
                 </a>
               </li>
             </ul>

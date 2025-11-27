@@ -101,10 +101,15 @@ const Header = () => {
                     H.K Enterprises
                   </NavLink>
                   <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
-                    <div className="flex items-center gap-1 hover:text-orange-600 transition-colors duration-300">
+                    <a 
+                      href="https://maps.app.goo.gl/SEDxS4gSaJaejMdC9" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 hover:text-orange-600 transition-colors duration-300 cursor-pointer"
+                    >
                       <FaMapMarkerAlt className="text-orange-500" />
                       <span>Thane, Maharashtra</span>
-                    </div>
+                    </a>
                     <div className="flex items-center gap-1 hover:text-green-600 transition-colors duration-300">
                       <FaCheckCircle className="text-green-500" />
                       <span>
