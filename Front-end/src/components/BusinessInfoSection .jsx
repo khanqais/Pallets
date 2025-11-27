@@ -185,18 +185,16 @@ const BusinessInfoSection = () => {
 
         
         <div className="mt-12 text-center">
-          <div className={`inline-flex items-center gap-4 bg-white/90 backdrop-blur-lg px-6 py-4 rounded-2xl shadow-xl border border-white/50 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`} style={{ transitionDelay: '600ms' }}>
-            <div className="relative">
+          <div  style={{ transitionDelay: '600ms' }}>
+            {/* <div className="relative">
               <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-lg">
                 <FaShieldAlt className="text-white text-2xl" />
               </div>
               <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
                 <span className="text-xs font-bold text-gray-800">✓</span>
               </div>
-            </div>
-            <div className="text-left">
+            </div> */}
+            {/* <div className="text-left">
               <a
                 href="https://trustseal.indiamart.com/members/hk-enterprisesnavimumbai"
                 target="_blank"
@@ -207,7 +205,7 @@ const BusinessInfoSection = () => {
               </a>
               
               <div className="text-orange-600 font-semibold">IndiaMART Certified</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
