@@ -115,7 +115,7 @@ const Header = () => {
                 </div>
               </div>
 
-              <a
+              {/* <a
                 href="https://trustseal.indiamart.com/members/hk-enterprisesnavimumbai"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -139,7 +139,7 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </a> */}
 
               <div className="hidden md:flex items-center gap-4">
                 <div className="relative group">
