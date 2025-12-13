@@ -11,11 +11,14 @@ import {
   FaShieldAlt,
   FaSearch,
   FaChevronDown,
+  FaMoon,
+  FaSun,
 } from "react-icons/fa";
 import { assets } from "../assets/assets";
 import { NavLink } from 'react-router-dom';
 import QuickMessagePopup from './QuickMessagePopup'; 
 import Swal from "sweetalert2";
+import { useTheme } from '../hooks/useTheme';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,6 +31,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isProductPage = location.pathname === '/product';
+  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,26 +95,26 @@ const Header = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-40 bg-white shadow-lg">
-        <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200">
+      <div className="sticky top-0 z-40 bg-white dark:bg-gray-900 shadow-lg transition-colors duration-300">
+        <div className="bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-6 flex-1">
                 <div className="group">
-                  <NavLink to='/' className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent hover:from-orange-600 hover:to-red-600 transition-all duration-500">
+                  <NavLink to='/' className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent transition-all duration-500">
                     H.K Enterprises
                   </NavLink>
-                  <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+                  <div className="flex items-center gap-4 mt-1 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
                     <a 
                       href="https://maps.app.goo.gl/TGrDPwFup993fTww8" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 hover:text-orange-600 transition-colors duration-300 cursor-pointer"
+                      className="flex items-center gap-1 transition-colors duration-300 cursor-pointer"
                     >
                       <FaMapMarkerAlt className="text-orange-500" />
                       <span>Thane, Maharashtra</span>
                     </a>
-                    <div className="flex items-center gap-1 hover:text-green-600 transition-colors duration-300">
+                    <div className="flex items-center gap-1 hover:text-green-600 dark:hover:text-green-400 transition-colors duration-300">
                       <FaCheckCircle className="text-green-500" />
                       <span>
                         GST No.- <strong>27BJNPA8946A1Z7</strong>
@@ -146,20 +150,20 @@ const Header = () => {
                 </div>
               </a> */}
 
-              <div className="hidden md:flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-4 ml-auto">
                 <div className="relative group">
                   <div className="absolute -inset-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-20 transition-all duration-500 blur-lg"></div>
-                  <div className="relative bg-white border-2 border-gray-200 hover:border-green-400 rounded-xl px-4 py-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <div className="relative bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-3">
                       <div className="relative">
                         <FaPhone className="text-green-600 text-xl" />
                         <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                       </div>
                       <div>
-                        <div className="font-bold text-gray-800">
+                        <div className="font-bold text-gray-800 dark:text-white transition-colors duration-300">
                           Call 07942667387
                         </div>
-                        <div className="text-sm text-green-600 font-medium">
+                        <div className="text-sm text-green-600 dark:text-green-400 font-medium transition-colors duration-300">
                           79% Response rate
                         </div>
                       </div>
@@ -169,7 +173,7 @@ const Header = () => {
 
                 <button
                   onClick={() => setShowMessagePopup(true)}
-                  className="relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+                  className="relative overflow-hidden bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-300 group"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
                   <div className="relative flex items-center gap-2 font-semibold">
@@ -177,25 +181,51 @@ const Header = () => {
                     <span>Send Email</span>
                   </div>
                 </button>
+
+                <button
+                  onClick={toggleTheme}
+                  className={`p-3 rounded-xl transition-all duration-300 ${
+                    isDarkMode
+                      ? 'bg-yellow-400 text-yellow-900 hover:bg-yellow-300'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  } shadow-lg hover:shadow-xl hover:scale-110`}
+                  title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                >
+                  {isDarkMode ? <FaSun className="text-xl" /> : <FaMoon className="text-xl" />}
+                </button>
               </div>
 
-              <button
-                className="md:hidden relative text-gray-700 text-2xl p-2 rounded-xl hover:bg-orange-100 transition-all duration-300"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <div className="relative w-6 h-6 flex items-center justify-center">
-                  <FaBars
-                    className={`absolute transition-all duration-500 ${
-                      menuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
-                    }`}
-                  />
-                  <FaTimes
-                    className={`absolute transition-all duration-500 ${
-                      menuOpen ? "rotate-0 opacity-100" : "rotate-90 opacity-0"
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={toggleTheme}
+                  className={`p-2 rounded-xl transition-all duration-300 md:hidden ${
+                    isDarkMode
+                      ? 'bg-yellow-400 text-yellow-900 hover:bg-yellow-300'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  } shadow-lg hover:shadow-xl`}
+                  title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                >
+                  {isDarkMode ? <FaSun className="text-lg" /> : <FaMoon className="text-lg" />}
+                </button>
+
+                <button
+                  className="md:hidden relative text-gray-700 dark:text-gray-300 text-2xl p-2 rounded-xl hover:bg-orange-100 dark:hover:bg-gray-700 transition-all duration-300"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <div className="relative w-6 h-6 flex items-center justify-center">
+                    <FaBars
+                      className={`absolute transition-all duration-500 ${
+                        menuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+                      }`}
+                    />
+                    <FaTimes
+                      className={`absolute transition-all duration-500 ${
+                        menuOpen ? "rotate-0 opacity-100" : "rotate-90 opacity-0"
                     }`}
                   />
                 </div>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>

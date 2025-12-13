@@ -19,12 +19,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-purple-500 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+    <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black dark:from-gray-950 dark:via-gray-900 dark:to-black text-white overflow-hidden transition-colors duration-300">
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -37,7 +33,7 @@ const Footer = () => {
             </div>
             <ul className="space-y-3">
               <li>
-                <a href="/contact" className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block">
+                <a href="/contact" className="text-gray-300 transition-all duration-300 inline-block">
                   Contact Us
                 </a>
               </li>
@@ -46,7 +42,7 @@ const Footer = () => {
                   href="https://maps.app.goo.gl/SEDxS4gSaJaejMdC9" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-orange-400 transition-all duration-300 group/addr"
+                  className="text-gray-300 transition-all duration-300 group/addr"
                 >
                   <div className="flex items-start gap-2">
                     <FaMapMarkerAlt className="text-orange-500 mt-1 flex-shrink-0" />
@@ -81,7 +77,7 @@ const Footer = () => {
                   key={index}
                   href="#"
                   onClick={handleProductClick}
-                  className="text-gray-300 hover:text-orange-400 transition-all duration-300 hover:translate-x-2 inline-block p-2 rounded-lg hover:bg-white/5 backdrop-blur-sm"
+                  className="text-gray-300 transition-all duration-300 inline-block p-2 rounded-lg backdrop-blur-sm"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   {product}
@@ -92,7 +88,7 @@ const Footer = () => {
               <a
                 href="#"
                 onClick={handleViewAllClick}
-                className="group/link inline-flex items-center text-orange-400 font-semibold hover:text-orange-300 transition-all duration-300 bg-gradient-to-r from-orange-500/10 to-red-500/10 px-4 py-2 rounded-full border border-orange-500/20 hover:border-orange-400/40 hover:shadow-lg hover:shadow-orange-500/20"
+                className="group/link inline-flex items-center text-orange-400 font-semibold transition-all duration-300 bg-gradient-to-r from-orange-500/10 to-red-500/10 px-4 py-2 rounded-full border border-orange-500/20"
               >
                 View All Products
                 <FaArrowRight className="ml-2 group-hover/link:translate-x-1 transition-transform duration-300" />
@@ -112,7 +108,7 @@ const Footer = () => {
                 href="https://www.facebook.com/sharer.php?u=https://www.hkwoodenpallets.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-xl hover:scale-110 hover:rotate-6 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
+                className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-xl transition-all duration-300 shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"></div>
                 <FaFacebookF className="relative z-10" />
@@ -121,7 +117,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/cws/share?url=https://www.hkwoodenpallets.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-800 text-white rounded-xl hover:scale-110 hover:rotate-6 transition-all duration-300 shadow-lg hover:shadow-blue-600/50"
+                className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-800 text-white rounded-xl transition-all duration-300 shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"></div>
                 <FaLinkedinIn className="relative z-10" />
@@ -130,7 +126,7 @@ const Footer = () => {
                 href="https://x.com/intent/post?url=https%3A%2F%2Fwww.hkwoodenpallets.com%2F"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black text-white rounded-xl hover:scale-110 hover:rotate-6 transition-all duration-300 shadow-lg hover:shadow-gray-700/50"
+                className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black text-white rounded-xl transition-all duration-300 shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"></div>
                 <FaXTwitter className="relative z-10" />

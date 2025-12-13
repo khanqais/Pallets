@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { FaHeart, FaEye } from "react-icons/fa";
+import GlowingEffect from "./GlowingEffect";
 
 const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="group relative bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50 overflow-hidden">
+    <div className="group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden">
+      <GlowingEffect
+        blur={10}
+        spread={30}
+        inactiveZone={0.5}
+        proximity={100}
+        variant="default"
+        glow={true}
+        movementDuration={2}
+        borderWidth={2}
+      />
     
-      <div className="relative overflow-hidden bg-gray-100 rounded-t-2xl">
+      <div className="relative overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-t-2xl transition-colors duration-300">
         <img
           src={product.image}
           alt={product.name}
@@ -41,10 +52,10 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
 
       
       <div className="p-4 relative">
-        <h3 className="font-bold text-gray-800 text-lg mb-1 truncate group-hover:text-orange-600 transition-colors duration-300">
+        <h3 className="font-bold text-gray-800 dark:text-white text-lg mb-1 truncate group-hover:text-orange-600 transition-colors duration-300">
           {product.name}
         </h3>
-        <p className="text-sm text-gray-600 mb-2">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Size: {product.size}
         </p>
 
@@ -56,7 +67,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
 
           <button
             onClick={() => onGetQuote(product)} 
-            className="group/btn relative overflow-hidden bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-4 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm font-semibold"
+            className="group/btn relative overflow-hidden bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-lg transition-all duration-300 text-sm font-semibold"
           >
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
             <span className="relative z-10">Get Quote</span>

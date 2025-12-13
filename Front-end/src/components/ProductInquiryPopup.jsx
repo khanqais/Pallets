@@ -93,11 +93,11 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
   
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-fadeIn">
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-6xl max-h-[95vh] overflow-y-auto transform animate-slideIn">
+      <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl w-full max-w-6xl max-h-[95vh] overflow-y-auto transform animate-slideIn transition-colors duration-300">
         
         <button
           onClick={onClose}
-          className="absolute top-8 right-8 text-gray-400 hover:text-gray-600 text-3xl hover:scale-110 transition-all duration-300 z-10 bg-white rounded-full p-2 shadow-lg"
+          className="absolute top-8 right-8 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-3xl hover:scale-110 transition-all duration-300 z-10 bg-white dark:bg-gray-700 rounded-full p-2 shadow-lg"
         >
           <FaTimes />
         </button>

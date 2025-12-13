@@ -38,16 +38,16 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fadeIn">
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full transform animate-slideIn">
+      <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full transform animate-slideIn transition-colors duration-300">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl hover:scale-110 transition-all duration-300"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xl hover:scale-110 transition-all duration-300"
         >
           <FaTimes />
         </button>
         <div className="p-8">
           <div className="text-center mb-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
+            <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-2 transition-colors duration-300">
               Send a quick message to the seller for more information
             </h2>
           </div>
@@ -59,7 +59,7 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
               onChange={handleChange}
               placeholder="Your Name"
               required
-              className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all duration-300"
+              className="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 text-gray-700 dark:text-white dark:bg-gray-700/50 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-all duration-300"
             />
             <input
               name="email"
@@ -68,7 +68,7 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
               onChange={handleChange}
               placeholder="Email Address"
               required
-              className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all duration-300"
+              className="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 text-gray-700 dark:text-white dark:bg-gray-700/50 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-all duration-300"
             />
             <input
               name="phone"
@@ -76,7 +76,7 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
               value={formData.phone}
               onChange={handleChange}
               placeholder="Phone"
-              className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all duration-300"
+              className="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 text-gray-700 dark:text-white dark:bg-gray-700/50 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-all duration-300"
             />
             
             <input
@@ -85,7 +85,7 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
               value={formData.subject}
               onChange={handleChange}
               placeholder="Subject"
-              className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-all duration-300"
+              className="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl px-4 py-3 text-gray-700 dark:text-white dark:bg-gray-700/50 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-all duration-300"
             />
             <textarea
               name="message"

@@ -120,7 +120,7 @@ const ProductRecommendations = () => {
     <>
       <section 
         id="product-recommendations" 
-        className="relative py-16 bg-gradient-to-br from-white via-orange-50 to-red-50 overflow-hidden"
+        className="relative py-16 bg-gradient-to-br from-white via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300"
       >
        
         
@@ -129,11 +129,11 @@ const ProductRecommendations = () => {
           <div className={`text-center mb-12 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 via-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent mb-4">
               Recommended Products
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-4 rounded-full"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-300">
               Discover our most popular wooden pallets and packaging solutions, carefully selected for quality and reliability.
             </p>
           </div>

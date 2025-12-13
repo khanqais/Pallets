@@ -12,6 +12,7 @@ import {
   FaChevronUp
 } from "react-icons/fa";
 import TextType from './TextType';
+import GlowingEffect from './GlowingEffect';
 
 const BusinessInfoSection = () => {
   const [expanded, setExpanded] = useState(false);
@@ -87,20 +88,16 @@ const BusinessInfoSection = () => {
   return (
     <section 
       id="business-info" 
-      className="relative py-16 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 overflow-hidden"
+      className="relative py-16 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300"
     >
       
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-orange-300 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-300 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         
         <div className="text-center mb-12">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-sm uppercase tracking-wider text-gray-600 mb-3 font-semibold">
+            <h2 className="text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-3 font-semibold transition-colors duration-300">
               WELCOME TO
             </h2>
             
@@ -117,8 +114,8 @@ const BusinessInfoSection = () => {
                 pauseDuration={2000}
                 showCursor={true}
                 cursorCharacter="|"
-                className="bg-gradient-to-r from-gray-800 via-orange-600 to-red-600 bg-clip-text text-transparent"
-                cursorClassName="text-orange-600 animate-pulse"
+                className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent"
+                cursorClassName="text-orange-600 dark:text-orange-500 animate-pulse"
               />
             </div>
             
@@ -139,7 +136,7 @@ const BusinessInfoSection = () => {
               
               <button
                 onClick={() => setExpanded(!expanded)}
-                className="text-orange-600 hover:text-orange-700 font-semibold flex items-center gap-2 mx-auto mt-3 transition-colors duration-300"
+                className="text-orange-600 font-semibold flex items-center gap-2 mx-auto mt-3 transition-colors duration-300"
               >
                 {expanded ? 'Read Less...' : 'Read More...'}
                 {expanded ? <FaChevronUp /> : <FaChevronDown />}
@@ -153,7 +150,7 @@ const BusinessInfoSection = () => {
           {businessData.map((item, index) => (
             <div
               key={index}
-              className={`group relative bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50 ${
+              className={`group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ 
@@ -161,24 +158,34 @@ const BusinessInfoSection = () => {
                 transitionDelay: item.delay 
               }}
             >
+              <GlowingEffect
+                blur={10}
+                spread={30}
+                inactiveZone={0.5}
+                proximity={100}
+                variant="default"
+                glow={true}
+                movementDuration={2}
+                borderWidth={2}
+              />
               
-              <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 group-hover:opacity-50 rounded-2xl transition-opacity duration-500`}></div>
+              <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 rounded-2xl transition-opacity duration-500`}></div>
               
               <div className="relative z-10">
                 
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300 flex items-center justify-center mb-4`}>
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg transition-transform duration-300 flex items-center justify-center mb-4`}>
                   <item.icon className="text-white text-xl" />
                 </div>
 
                
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg mb-2">{item.title}</h3>
-                  <p className="text-gray-700 font-medium leading-relaxed">{item.value}</p>
+                  <h3 className="font-bold text-gray-800 dark:text-white text-lg mb-2 transition-colors duration-300">{item.title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300 font-medium leading-relaxed transition-colors duration-300">{item.value}</p>
                 </div>
               </div>
 
               
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r transition-all duration-500"></div>
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500"></div>
             </div>
           ))}
         </div>

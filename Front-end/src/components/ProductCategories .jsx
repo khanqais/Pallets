@@ -299,24 +299,21 @@ const ProductCategories = () => {
     <>
       <section 
         id="product-categories" 
-        className="relative py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden"
+        className="relative py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300"
       >
         
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 bg-orange-400 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
+
 
         <div className="relative z-10 max-w-7xl mx-auto px-4">
           
           <div className={`text-center mb-12 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 via-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent mb-4">
               Our Product Categories
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-4 rounded-full"></div>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-300">
               Explore our comprehensive range of wooden pallets designed for various industrial and commercial applications.
             </p>
           </div>
@@ -334,8 +331,8 @@ const ProductCategories = () => {
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 border-2 ${
                     selectedCategory === category
                       ? 'bg-gradient-to-r from-orange-600 to-red-600 text-white border-orange-600 shadow-lg scale-105'
-                      : 'bg-white text-gray-700 border-gray-300 hover:border-orange-400 hover:text-orange-600 hover:scale-102'
-                  } shadow-md hover:shadow-lg`}
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 hover:scale-102'
+                  } shadow-md hover:shadow-lg transition-colors duration-300`}
                 >
                   {category}
                 </button>
@@ -347,7 +344,7 @@ const ProductCategories = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-xl text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-700 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors duration-300"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>

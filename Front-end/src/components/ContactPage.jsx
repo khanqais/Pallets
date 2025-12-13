@@ -75,21 +75,17 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-orange-300 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-300 rounded-full blur-3xl animate-pulse delay-500"></div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
+
 
       <div className="relative z-10 pt-24 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent mb-6 animate-fade-in">
               Get In Touch
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6 rounded-full"></div>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed transition-colors duration-300">
               Have a question or need help? We'd love to hear from you. 
               <span className="font-semibold text-orange-600"> Send us a message</span> and we'll respond as soon as possible.
             </p>
@@ -98,7 +94,7 @@ const ContactPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div className="relative">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2 transition-colors duration-300">
                   <div className="w-2 h-8 bg-gradient-to-b from-orange-500 to-red-500 rounded-full"></div>
                   Contact Information
                 </h2>
@@ -107,22 +103,22 @@ const ContactPage = () => {
               {contactInfo.map((item, index) => (
                 <div
                   key={index}
-                  className={`group relative bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50`}
+                  className={`group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50`}
                   style={{ animationDelay: item.delay }}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 group-hover:opacity-50 rounded-2xl transition-opacity duration-500`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 rounded-2xl transition-opacity duration-500`}></div>
                   
                   <div className="relative z-10 flex items-start gap-4">
-                    <div className={`p-4 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`p-4 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg transition-transform duration-300`}>
                       <item.icon className="text-white text-xl" />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800 text-lg mb-1">{item.title}</p>
-                      <p className="text-gray-600 leading-relaxed">{item.content}</p>
+                      <p className="font-bold text-gray-800 dark:text-white text-lg mb-1 transition-colors duration-300">{item.title}</p>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed transition-colors duration-300">{item.content}</p>
                     </div>
                   </div>
 
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-500"></div>
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500"></div>
                 </div>
               ))}
 
@@ -140,24 +136,24 @@ const ContactPage = () => {
             </div>
 
             <div className="relative">
-              <div className="bg-white/90 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white/50">
+              <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-8 rounded-2xl shadow-2xl border border-white/50 dark:border-gray-700/50 transition-colors duration-300">
                 <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2">
+                  <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2 transition-colors duration-300">
                     <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></div>
                     Send Us a Message
                   </h2>
                 </div>
 
                 {submitStatus === 'success' && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-2 animate-fade-in">
-                    <FaCheckCircle className="text-green-600" />
-                    <span className="text-green-800 font-medium">Message sent successfully! We'll get back to you soon.</span>
+                  <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-xl flex items-center gap-2 animate-fade-in transition-colors duration-300">
+                    <FaCheckCircle className="text-green-600 dark:text-green-400" />
+                    <span className="text-green-800 dark:text-green-300 font-medium transition-colors duration-300">Message sent successfully! We'll get back to you soon.</span>
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
-                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl animate-fade-in">
-                    <span className="text-red-800 font-medium">Error sending message. Please try again.</span>
+                  <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-xl animate-fade-in transition-colors duration-300">
+                    <span className="text-red-800 dark:text-red-300 font-medium transition-colors duration-300">Error sending message. Please try again.</span>
                   </div>
                 )}
 
@@ -179,10 +175,10 @@ const ContactPage = () => {
                         onBlur={() => setFocusedField(null)}
                         required
                         disabled={isSubmitting}
-                        className={`w-full border-2 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-500 transition-all duration-300 focus:outline-none bg-white/70 backdrop-blur-sm disabled:opacity-50 ${
+                        className={`w-full border-2 rounded-xl px-4 py-3 text-gray-800 dark:text-white dark:bg-gray-700/50 dark:placeholder-gray-400 placeholder-gray-500 transition-all duration-300 focus:outline-none bg-white/70 backdrop-blur-sm disabled:opacity-50 ${
                           focusedField === field.name
-                            ? 'border-orange-400 shadow-lg shadow-orange-200 scale-105'
-                            : 'border-gray-200 hover:border-gray-300'
+                            ? 'border-orange-400 shadow-lg shadow-orange-200 dark:shadow-orange-900/50 scale-105'
+                            : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                         }`}
                         style={{ animationDelay: `${index * 100}ms` }}
                       />
@@ -203,10 +199,10 @@ const ContactPage = () => {
                       rows="4"
                       required
                       disabled={isSubmitting}
-                      className={`w-full border-2 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-500 transition-all duration-300 focus:outline-none bg-white/70 backdrop-blur-sm disabled:opacity-50 resize-none ${
+                      className={`w-full border-2 rounded-xl px-4 py-3 text-gray-800 dark:text-white dark:bg-gray-700/50 dark:placeholder-gray-400 placeholder-gray-500 transition-all duration-300 focus:outline-none bg-white/70 backdrop-blur-sm disabled:opacity-50 resize-none ${
                         focusedField === 'message'
-                          ? 'border-orange-400 shadow-lg shadow-orange-200 scale-105'
-                          : 'border-gray-200 hover:border-gray-300'
+                          ? 'border-orange-400 shadow-lg shadow-orange-200 dark:shadow-orange-900/50 scale-105'
+                          : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                       }`}
                     />
                     <div className={`absolute inset-0 rounded-xl bg-gradient-to-r from-orange-400 to-red-400 opacity-0 transition-opacity duration-300 -z-10 blur-sm ${
@@ -217,11 +213,11 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full relative overflow-hidden bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 hover:from-orange-700 hover:via-red-700 hover:to-pink-700 text-white font-bold px-6 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 ${
+                    className={`w-full relative overflow-hidden bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white font-bold px-6 py-4 rounded-xl shadow-xl transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed ${
                       isSubmitting ? '' : 'hover:animate-pulse'
                     }`}
                   >
-                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
+                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] transition-transform duration-700 skew-x-12"></div>
                     
                     <div className="relative z-10 flex items-center justify-center gap-2">
                       {isSubmitting ? (

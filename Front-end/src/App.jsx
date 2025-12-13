@@ -12,13 +12,12 @@ const App = () => {
     <>
       <ScrollToTop />
       
-      <div className="App">
+      <div className="App bg-white dark:bg-gray-900 transition-colors duration-300">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-        
         <Footer />
       </div>
     </>
