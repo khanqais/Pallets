@@ -19,6 +19,7 @@ import { NavLink } from 'react-router-dom';
 import QuickMessagePopup from './QuickMessagePopup'; 
 import Swal from "sweetalert2";
 import { useTheme } from '../hooks/useTheme';
+import AnimatedThemeSwitch from './AnimatedThemeSwitch';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -182,31 +183,15 @@ const Header = () => {
                   </div>
                 </button>
 
-                <button
-                  onClick={toggleTheme}
-                  className={`p-3 rounded-xl transition-all duration-300 ${
-                    isDarkMode
-                      ? 'bg-yellow-400 text-yellow-900 hover:bg-yellow-300'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  } shadow-lg hover:shadow-xl hover:scale-110`}
-                  title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                >
-                  {isDarkMode ? <FaSun className="text-xl" /> : <FaMoon className="text-xl" />}
-                </button>
+                <div className="hidden md:block">
+                  <AnimatedThemeSwitch />
+                </div>
               </div>
 
               <div className="flex items-center gap-2">
-                <button
-                  onClick={toggleTheme}
-                  className={`p-2 rounded-xl transition-all duration-300 md:hidden ${
-                    isDarkMode
-                      ? 'bg-yellow-400 text-yellow-900 hover:bg-yellow-300'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  } shadow-lg hover:shadow-xl`}
-                  title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                >
-                  {isDarkMode ? <FaSun className="text-lg" /> : <FaMoon className="text-lg" />}
-                </button>
+                <div className="md:hidden">
+                  <AnimatedThemeSwitch />
+                </div>
 
                 <button
                   className="md:hidden relative text-gray-700 dark:text-gray-300 text-2xl p-2 rounded-xl hover:bg-orange-100 dark:hover:bg-gray-700 transition-all duration-300"

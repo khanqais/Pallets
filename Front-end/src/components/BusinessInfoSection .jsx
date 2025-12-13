@@ -123,12 +123,12 @@ const BusinessInfoSection = () => {
             
             
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              <p className="text-lg text-gray-700 dark:text-white leading-relaxed mb-4">
                 GET IN TOUCH WITH US FOR BEST DEALS
               </p>
               
               {expanded && (
-                <div className="text-gray-600 space-y-2 animate-fadeIn">
+                <div className="text-gray-600 dark:text-gray-200 space-y-2 animate-fadeIn">
                   <p>We are a leading trader and wholesaler/distributor specializing in high-quality wooden pallets and packaging solutions.</p>
                   <p>With years of experience in the industry, we provide reliable products that meet international standards.</p>
                 </div>
