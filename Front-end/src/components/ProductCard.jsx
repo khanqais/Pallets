@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaHeart, FaEye } from "react-icons/fa";
 import GlowingEffect from "./GlowingEffect";
 
-const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
+const ProductCard = ({ product, onViewDetails, onGetQuote, onViewImage }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -42,7 +42,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote }) => {
             <FaHeart className="text-xs" />
           </button>
           <button
-            onClick={onViewDetails}
+            onClick={onViewImage}
             className="w-8 h-8 bg-white/80 hover:bg-orange-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300"
           >
             <FaEye className="text-xs" />

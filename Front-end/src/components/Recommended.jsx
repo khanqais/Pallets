@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ProductCard from "./ProductCard";
 import ProductInquiryPopup from "./ProductInquiryPopup";
+import ProductImageModal from "./ProductImageModal";
 import { assets } from "../assets/assets";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ProductRecommendations = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [showInquiryPopup, setShowInquiryPopup] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [modalProduct, setModalProduct] = useState(null);
+  const navigate = useNavigate();
 
   const recommendedProducts = [
     {
@@ -77,6 +82,12 @@ const ProductRecommendations = () => {
 
   const handleViewDetails = (product) => {
     console.log("View details for:", product);
+    navigate('/product', { state: { product } });
+  };
+
+  const handleViewImage = (product) => {
+    setModalProduct(product);
+    setShowImageModal(true);
   };
 
   const handleGetQuote = (product) => {
@@ -153,6 +164,7 @@ const ProductRecommendations = () => {
                 <ProductCard
                   product={product}
                   onViewDetails={() => handleViewDetails(product)}
+                  onViewImage={() => handleViewImage(product)}
                   onGetQuote={handleGetQuote} 
                 />
               </div>
@@ -162,6 +174,12 @@ const ProductRecommendations = () => {
       </section>
 
       
+      <ProductImageModal
+        isOpen={showImageModal}
+        product={modalProduct}
+        onClose={() => setShowImageModal(false)}
+      />
+
       <ProductInquiryPopup
         isOpen={showInquiryPopup}
         onClose={() => setShowInquiryPopup(false)}
