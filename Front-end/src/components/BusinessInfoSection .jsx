@@ -97,10 +97,9 @@ const BusinessInfoSection = () => {
         
         <div className="text-center mb-12">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-sm uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-3 font-semibold transition-colors duration-300">
+            <h2 className="text-lg md:text-xl uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-3 font-semibold transition-colors duration-300">
               WELCOME TO
             </h2>
-            
             
             <div className="text-4xl md:text-6xl font-bold mb-4 min-h-[4rem] md:min-h-[6rem] flex items-center justify-center">
               <TextType 
