@@ -2,12 +2,17 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext();
 
+// Helper to check if we're in browser environment
+const isBrowser = typeof window !== 'undefined';
+
 const ThemeContextProvider = (props) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Check localStorage for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme === 'dark';
+    // Only access localStorage in browser environment (not during SSR)
+    if (isBrowser) {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        return savedTheme === 'dark';
+      }
     }
     // Default to dark mode
     return true;

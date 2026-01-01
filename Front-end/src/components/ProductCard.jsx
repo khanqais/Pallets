@@ -23,6 +23,8 @@ const ProductCard = ({ product, onViewDetails, onGetQuote, onViewImage }) => {
         <img
           src={product.image}
           alt={product.name}
+          loading="lazy"
+          decoding="async"
           className={`w-full h-48 object-cover transition-all duration-500 group-hover:scale-110 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           }`}

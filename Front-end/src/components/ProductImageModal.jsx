@@ -19,6 +19,8 @@ const ProductImageModal = ({ isOpen, product, onClose }) => {
           <img
             src={product.image}
             alt={product.name}
+            loading="eager"
+            decoding="async"
             className="w-full h-auto object-contain max-h-[80vh]"
           />
           
