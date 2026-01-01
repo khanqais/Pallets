@@ -186,7 +186,8 @@ VITE_API_URL=https://your-api.com
 - Best Practices: 96
 - SEO: 92
 
-![Lighthouse Score](https://pallets-lovat.vercel.app/lighthouse-score.png)
+![Lighthouse Score]()
+<img width="1891" height="289" alt="Screenshot 2026-01-01 130322" src="https://github.com/user-attachments/assets/69d317e4-b75c-4890-88f1-231b785f22c2" />
 
 Visit the live site: [https://pallets-lovat.vercel.app/](https://pallets-lovat.vercel.app/)
 
