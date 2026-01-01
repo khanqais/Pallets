@@ -13,6 +13,17 @@ A modern, high-performance e-commerce platform for quality pallets and packaging
 - **Optimized Images** - WebP format with lazy loading
 - **Production Ready** - Minified and optimized builds
 
+## 📊 Performance Metrics
+
+**Current Lighthouse Scores:**
+- Performance: 100
+- Accessibility: 83
+- Best Practices: 96
+- SEO: 92
+<img width="1891" height="289" alt="Screenshot 2026-01-01 130322" src="https://github.com/user-attachments/assets/69d317e4-b75c-4890-88f1-231b785f22c2" />
+
+Visit the live site: [https://pallets-lovat.vercel.app/](https://pallets-lovat.vercel.app/)
+
 ## 📋 Project Structure
 
 ```
@@ -178,18 +189,7 @@ Create `.env` for backend URLs if needed:
 VITE_API_URL=https://your-api.com
 ```
 
-## 📊 Performance Metrics
 
-**Current Lighthouse Scores:**
-- Performance: 100
-- Accessibility: 83
-- Best Practices: 96
-- SEO: 92
-
-![Lighthouse Score]()
-<img width="1891" height="289" alt="Screenshot 2026-01-01 130322" src="https://github.com/user-attachments/assets/69d317e4-b75c-4890-88f1-231b785f22c2" />
-
-Visit the live site: [https://pallets-lovat.vercel.app/](https://pallets-lovat.vercel.app/)
 
 ## 🐛 Troubleshooting
 
