@@ -445,7 +445,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
         }
       `}</style>
     </div>,
-    document.body 
+    typeof document !== 'undefined' ? document.body : null 
   );
 };
 

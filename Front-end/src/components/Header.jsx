@@ -35,6 +35,8 @@ const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
