@@ -101,7 +101,7 @@ const BusinessInfoSection = () => {
               WELCOME TO
             </h2>
             
-            <div className="text-4xl md:text-6xl font-bold mb-4 min-h-[4rem] md:min-h-[6rem] flex items-center justify-center">
+            <div className="text-4xl md:text-6xl font-bold mb-4 min-h-[5rem] md:min-h-[7rem] flex items-center justify-center px-2 w-full overflow-visible pb-2">
               <TextType 
                 text={[
                   "H.K Enterprises",
@@ -113,7 +113,7 @@ const BusinessInfoSection = () => {
                 pauseDuration={2000}
                 showCursor={true}
                 cursorCharacter="|"
-                className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent inline-block whitespace-nowrap leading-normal"
                 cursorClassName="text-orange-600 dark:text-orange-500 animate-pulse"
               />
             </div>
