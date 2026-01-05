@@ -10,6 +10,23 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use((req, res, next) => {
+ 
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';"
+  );
+  
+  
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  
+  
+  res.setHeader('X-Frame-Options', 'DENY');
+  
+  next();
+});
+
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path}`, req.body);
   next();
@@ -23,7 +40,7 @@ app.get('/',(req,res)=>{
 const validateInquiryData = (data) => {
   const errors = [];
 
-  // Validate product
+  
   if (!data.product) {
     errors.push('Product information is required');
   } else {
