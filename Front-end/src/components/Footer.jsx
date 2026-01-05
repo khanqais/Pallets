@@ -61,7 +61,7 @@ const Footer = () => {
 
           <div className="md:col-span-2 group">
             <div className="relative mb-6">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold text-white">
                 Our Products
               </h3>
               <div className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-500"></div>
