@@ -108,6 +108,7 @@ const Footer = () => {
                 href="https://www.facebook.com/sharer.php?u=https://www.hkwoodenpallets.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Share on Facebook"
                 className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-xl transition-all duration-300 shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"></div>
@@ -117,6 +118,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/cws/share?url=https://www.hkwoodenpallets.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Share on LinkedIn"
                 className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-700 to-blue-800 text-white rounded-xl transition-all duration-300 shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"></div>
@@ -126,6 +128,7 @@ const Footer = () => {
                 href="https://x.com/intent/post?url=https%3A%2F%2Fwww.hkwoodenpallets.com%2F"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Share on Twitter"
                 className="group/social relative w-12 h-12 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black text-white rounded-xl transition-all duration-300 shadow-lg"
               >
                 <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover/social:opacity-100 transition-opacity duration-300"></div>
