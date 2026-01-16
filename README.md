@@ -17,12 +17,13 @@ A modern, high-performance e-commerce platform for quality pallets and packaging
 
 **Current Lighthouse Scores:**
 - Performance: 100
-- Accessibility: 83
+- Accessibility: 95
 - Best Practices: 96
-- SEO: 92
-<img width="1891" height="289" alt="Screenshot 2026-01-01 130322" src="https://github.com/user-attachments/assets/69d317e4-b75c-4890-88f1-231b785f22c2" />
+- SEO: 100
+<img width="1434" height="178" alt="image" src="https://github.com/user-attachments/assets/70df1550-b1cd-4d1a-8fdb-2ee8c6ee0cc4" />
 
 Visit the live site: [https://pallets-lovat.vercel.app/](https://pallets-lovat.vercel.app/)
+
 
 ## 📋 Project Structure
 

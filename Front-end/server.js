@@ -12,20 +12,20 @@ async function createServer() {
 
   let vite
   if (!isProduction) {
-    // Create Vite server in middleware mode
+   
     vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'custom',
     })
 
-    // Use vite's connect instance as middleware
+   
     app.use(vite.middlewares)
   } else {
-    // In production, serve static files from dist/client
+    
     app.use(express.static(path.resolve(__dirname, 'dist/client')))
   }
 
-  // Handle all routes for SSR
+ 
   app.use(async (req, res, next) => {
     const url = req.originalUrl
 
@@ -34,20 +34,20 @@ async function createServer() {
       let render
 
       if (!isProduction) {
-        // 1. Read index.html
+       
         template = fs.readFileSync(
           path.resolve(__dirname, 'index.html'),
           'utf-8',
         )
 
-        // 2. Apply Vite HTML transforms
+       
         template = await vite.transformIndexHtml(url, template)
 
-        // 3. Load the server entry
+       
         const entryModule = await vite.ssrLoadModule('/src/entry-server.jsx')
         render = entryModule.render
       } else {
-        // In production, load the built template and server entry
+        
         template = fs.readFileSync(
           path.resolve(__dirname, 'dist/client/index.html'),
           'utf-8',
@@ -56,16 +56,16 @@ async function createServer() {
         render = entryServer.render
       }
 
-      // 4. Render the app HTML
+     
       const appHtml = await render(url)
 
-      // 5. Inject the app-rendered HTML into the template
+    
       const html = template.replace(`<!--ssr-outlet-->`, appHtml)
 
-      // 6. Send the rendered HTML back
+    
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
-      // If an error is caught, let Vite fix the stack trace in dev mode
+    
       if (!isProduction && vite) {
         vite.ssrFixStacktrace(e)
       }

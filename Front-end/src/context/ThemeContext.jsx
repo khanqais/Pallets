@@ -20,6 +20,8 @@ const ThemeContextProvider = (props) => {
 
   // Update localStorage and document when theme changes
   useEffect(() => {
+    if (!isBrowser) return;
+    
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     
     if (isDarkMode) {

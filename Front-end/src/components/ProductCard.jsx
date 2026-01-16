@@ -35,6 +35,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote, onViewImage }) => {
         <div className="absolute top-3 right-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
           <button
             onClick={() => setIsLiked(!isLiked)}
+            aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
             className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
               isLiked
                 ? 'bg-red-500 text-white'
@@ -45,6 +46,7 @@ const ProductCard = ({ product, onViewDetails, onGetQuote, onViewImage }) => {
           </button>
           <button
             onClick={onViewImage}
+            aria-label="View product image"
             className="w-8 h-8 bg-white/80 hover:bg-orange-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300"
           >
             <FaEye className="text-xs" />

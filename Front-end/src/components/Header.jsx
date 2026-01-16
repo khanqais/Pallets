@@ -35,6 +35,8 @@ const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -226,7 +228,7 @@ const Header = () => {
             <div className="hidden md:flex items-center">
               <NavLink to="/product" className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
                 <FaBars className="group-hover:rotate-90 transition-transform duration-300" />
-                <span className="font-semibold">Our Products</span>
+                <span className="font-semibold text-white">Our Products</span>
               </NavLink>
 
               <nav className="flex items-center ml-8 gap-8">
@@ -295,7 +297,7 @@ const Header = () => {
               className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 w-full text-left"
             >
               <FaBars />
-              <span className="font-semibold">Our Products</span>
+              <span className="font-semibold text-white">Our Products</span>
             </button>
             <button
               onClick={() => handleMobileNavClick('/')}

@@ -3,12 +3,12 @@ import { Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop'; 
 import Footer from './components/Footer';
 
-// Lazy load pages for better code splitting
+
 const Home = lazy(() => import('./pages/Home'));
 const ProductPage = lazy(() => import('./pages/ProductPage'));
 const Contact = lazy(() => import('./pages/Contact'));
 
-// Page loading fallback
+
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
     <div className="text-center">
