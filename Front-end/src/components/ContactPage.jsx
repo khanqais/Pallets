@@ -83,21 +83,21 @@ const ContactPage = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-[#F2F0E9] px-6 py-16 transition-colors duration-300 dark:bg-gray-900 md:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_1.1fr]">
-        <aside className="contact-animate rounded-[3rem] border border-[#2E4036]/15 bg-[#1A1A1A] p-8 text-[#F2F0E9] shadow-[0_20px_60px_rgba(26,26,26,0.2)] md:p-10">
+    <section ref={sectionRef} className="bg-[#F2F0E9] px-6 py-6 transition-colors duration-300 dark:bg-gray-900 md:px-10 md:py-8 lg:px-16">
+      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <aside className="contact-animate rounded-[3rem] border border-[#2E4036]/15 bg-[#1A1A1A] p-6 text-[#F2F0E9] shadow-[0_20px_60px_rgba(26,26,26,0.2)] md:p-7">
           <p className="font-data text-xs uppercase tracking-[0.18em] text-[#F2F0E9]/70">Contact Information</p>
-          <h2 className="mt-3 font-heading text-3xl font-extrabold leading-[0.95] tracking-tight md:text-5xl">Get in touch with our operations desk.</h2>
-          <p className="mt-4 text-sm text-[#F2F0E9]/80 md:text-base">Share load requirements, dimensions, and volume. We usually respond within 24 business hours.</p>
+          <h2 className="mt-2 font-heading text-3xl font-extrabold leading-[0.95] tracking-tight md:text-4xl">Get in touch with our operations desk.</h2>
+          <p className="mt-3 text-sm text-[#F2F0E9]/80 md:text-base">Share load requirements, dimensions, and volume. We usually respond within 24 business hours.</p>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-6 space-y-3">
             {contactInfo.map((item) => (
               <a
                 key={item.title}
                 href={item.href}
                 target={item.title === "Address" ? "_blank" : undefined}
                 rel={item.title === "Address" ? "noopener noreferrer" : undefined}
-                className="group flex items-start gap-4 rounded-[1.4rem] border border-[#F2F0E9]/15 bg-[#F2F0E9]/5 p-4 transition-all duration-300 hover:-translate-y-px"
+                className="group flex items-start gap-4 rounded-[1.4rem] border border-[#F2F0E9]/15 bg-[#F2F0E9]/5 p-3 transition-all duration-300 hover:-translate-y-px"
               >
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#CC5833] text-[#F2F0E9]">
                   <item.icon size={18} />
@@ -110,15 +110,15 @@ const ContactPage = () => {
             ))}
           </div>
 
-          <div className="mt-8 rounded-[1.4rem] border border-[#F2F0E9]/15 bg-[#F2F0E9]/5 p-4">
+          <div className="mt-6 rounded-[1.4rem] border border-[#F2F0E9]/15 bg-[#F2F0E9]/5 p-4">
             <p className="font-data text-xs uppercase tracking-[0.14em] text-[#F2F0E9]/65">Tax Profile</p>
             <p className="mt-2 text-sm text-[#F2F0E9]/85">GST No.: <span className="font-data">27BJNPA8946A1Z7</span></p>
           </div>
         </aside>
 
-        <div className="contact-animate rounded-[3rem] border border-[#2E4036]/15 bg-[#F2F0E9] p-7 shadow-[0_20px_60px_rgba(26,26,26,0.08)] transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800 md:p-10">
+        <div className="contact-animate rounded-[3rem] border border-[#2E4036]/15 bg-[#F2F0E9] p-6 shadow-[0_20px_60px_rgba(26,26,26,0.08)] transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800 md:p-7">
           <p className="font-data text-xs uppercase tracking-[0.18em] text-[#2E4036]/65 dark:text-gray-400">Send Message</p>
-          <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-tight text-[#2E4036] dark:text-gray-100 md:text-4xl">Tell us what you need.</h3>
+          <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-tight text-[#2E4036] dark:text-gray-100 md:text-3xl">Tell us what you need.</h3>
 
           {submitStatus === "success" && (
             <div className="mt-6 flex items-center gap-2 rounded-[1.2rem] border border-[#2E4036]/25 bg-[#2E4036]/8 px-4 py-3 text-sm text-[#2E4036] dark:border-green-700/60 dark:bg-green-900/20 dark:text-green-200">
@@ -132,16 +132,16 @@ const ContactPage = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
-            <div className="grid gap-4 md:grid-cols-2">
+          <form onSubmit={handleSubmit} className="mt-4 grid gap-3">
+            <div className="grid gap-3 md:grid-cols-2">
               <input name="name" type="text" placeholder="Full Name" value={formData.name} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
               <input name="email" type="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-2">
               <input name="phone" type="tel" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
               <input name="subject" type="text" placeholder="Subject" value={formData.subject} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
             </div>
-            <textarea name="message" rows="5" placeholder="Share dimensions, quantity, and timeline" value={formData.message} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
+            <textarea name="message" rows="4" placeholder="Share dimensions, quantity, and timeline" value={formData.message} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
 
             <button
               type="submit"
