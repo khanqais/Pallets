@@ -109,11 +109,11 @@ const ContactPage = () => {
               </a>
             ))}
           </div>
-
+{/* 
           <div className="mt-6 rounded-[1.4rem] border border-[#F2F0E9]/15 bg-[#F2F0E9]/5 p-4">
             <p className="font-data text-xs uppercase tracking-[0.14em] text-[#F2F0E9]/65">Tax Profile</p>
             <p className="mt-2 text-sm text-[#F2F0E9]/85">GST No.: <span className="font-data">27BJNPA8946A1Z7</span></p>
-          </div>
+          </div> */}
         </aside>
 
         <div className="contact-animate rounded-[3rem] border border-[#2E4036]/15 bg-[#F2F0E9] p-6 shadow-[0_20px_60px_rgba(26,26,26,0.08)] transition-colors duration-300 dark:border-gray-700 dark:bg-gray-800 md:p-7">
@@ -141,7 +141,7 @@ const ContactPage = () => {
               <input name="phone" type="tel" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
               <input name="subject" type="text" placeholder="Subject" value={formData.subject} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
             </div>
-            <textarea name="message" rows="4" placeholder="Share dimensions, quantity, and timeline" value={formData.message} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
+            <textarea name="message" rows="7" placeholder="Share dimensions, quantity, and timeline" value={formData.message} onChange={handleChange} required disabled={isSubmitting} className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-sm text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400" />
 
             <button
               type="submit"
