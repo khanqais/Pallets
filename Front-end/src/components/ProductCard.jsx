@@ -1,79 +1,61 @@
 import React, { useState } from "react";
-import { FaHeart, FaEye } from "react-icons/fa";
-import GlowingEffect from "./GlowingEffect";
+import { Heart, Eye } from "lucide-react";
 
 const ProductCard = ({ product, onViewDetails, onGetQuote, onViewImage }) => {
   const [isLiked, setIsLiked] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="group relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden">
-      <GlowingEffect
-        blur={10}
-        spread={30}
-        inactiveZone={0.5}
-        proximity={100}
-        variant="default"
-        glow={true}
-        movementDuration={2}
-        borderWidth={2}
-      />
-    
-      <div className="relative overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-t-2xl transition-colors duration-300">
+    <div className="group relative overflow-hidden rounded-[2rem] border border-[#2E4036]/12 bg-[#F2F0E9] shadow-[0_16px_48px_rgba(26,26,26,0.10)] transition-all duration-500 hover:-translate-y-1 dark:border-gray-700 dark:bg-gray-800">
+      <div className="relative overflow-hidden rounded-t-[2rem] bg-[#2E4036]/8 dark:bg-gray-700/50">
         <img
           src={product.image}
-          alt={product.name}
+          alt={product.name || "Product"}
           loading="lazy"
           decoding="async"
-          className={`w-full h-48 object-cover transition-all duration-500 group-hover:scale-110 ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setImageLoaded(true)}
+          className="h-56 w-full object-cover transition-all duration-700 group-hover:scale-105"
         />
-        
-        
-        <div className="absolute top-3 right-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+
+        <div className="absolute right-4 top-4 z-20 flex gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100">
           <button
             onClick={() => setIsLiked(!isLiked)}
             aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+            className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${
               isLiked
-                ? 'bg-red-500 text-white'
-                : 'bg-white/80 text-gray-600 hover:bg-red-500 hover:text-white'
+                ? 'border-[#CC5833] bg-[#CC5833] text-[#F2F0E9]'
+                : 'border-[#F2F0E9]/40 bg-[#1A1A1A]/40 text-[#F2F0E9] hover:bg-[#CC5833]'
             }`}
           >
-            <FaHeart className="text-xs" />
+            <Heart size={14} />
           </button>
           <button
             onClick={onViewImage}
             aria-label="View product image"
-            className="w-8 h-8 bg-white/80 hover:bg-orange-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F2F0E9]/40 bg-[#1A1A1A]/40 text-[#F2F0E9] transition-all duration-300 hover:bg-[#2E4036]"
           >
-            <FaEye className="text-xs" />
+            <Eye size={14} />
           </button>
         </div>
       </div>
 
-      
-      <div className="p-4 relative">
-        <h3 className="font-bold text-gray-800 dark:text-white text-lg mb-1 truncate group-hover:text-orange-600 transition-colors duration-300">
-          {product.name}
+      <div className="relative p-5">
+        <p className="font-data text-[11px] uppercase tracking-[0.18em] text-[#2E4036]/65 dark:text-gray-400">{product.capacity || 'Load Class Pending'}</p>
+        <h3 className="mt-1 truncate font-heading text-xl font-bold tracking-tight text-[#1A1A1A] dark:text-gray-100">
+          {product.name || 'Custom Wooden Pallet'}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+        <p className="mt-1 text-sm text-[#1A1A1A]/70 dark:text-gray-300">
           Size: {product.size}
         </p>
 
-        
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <span className="font-heading text-2xl font-bold tracking-tight text-[#CC5833]">
             {product.price}
           </span>
 
           <button
             onClick={() => onGetQuote(product)} 
-            className="group/btn relative overflow-hidden bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-lg transition-all duration-300 text-sm font-semibold"
+            className="magnetic-btn relative inline-flex items-center justify-center overflow-hidden rounded-[1.2rem] bg-[#CC5833] px-4 py-2 text-sm font-semibold text-[#F2F0E9]"
           >
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
+            <span className="magnetic-fill" aria-hidden="true" />
             <span className="relative z-10">Get Quote</span>
           </button>
         </div>

@@ -299,21 +299,19 @@ const ProductCategories = () => {
     <>
       <section 
         id="product-categories" 
-        className="relative py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300"
+        className="relative overflow-hidden bg-[#F2F0E9] px-4 py-16 transition-colors duration-300 dark:bg-gray-900 md:px-8"
       >
-        
-
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
+        <div className="relative z-10 mx-auto max-w-7xl">
           
           <div className={`text-center mb-12 transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent mb-4">
+            <p className="font-data text-xs uppercase tracking-[0.18em] text-[#2E4036]/65 dark:text-gray-400">Product Registry</p>
+            <h2 className="mt-3 font-heading text-3xl font-extrabold tracking-tight text-[#2E4036] dark:text-gray-100 md:text-5xl">
               Our Product Categories
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-4 rounded-full"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors duration-300">
+            <div className="mx-auto mb-4 mt-4 h-1 w-24 rounded-full bg-[#CC5833]"></div>
+            <p className="mx-auto max-w-2xl text-sm text-[#1A1A1A]/70 dark:text-gray-300 md:text-base">
               Explore our comprehensive range of wooden pallets designed for various industrial and commercial applications.
             </p>
           </div>
@@ -323,16 +321,16 @@ const ProductCategories = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
             {/* Desktop Tabs */}
-            <div className="hidden md:flex justify-center gap-4 mb-8">
+            <div className="mb-8 hidden flex-wrap justify-center gap-3 md:flex">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 border-2 ${
+                  className={`rounded-[1.4rem] border px-5 py-3 font-heading text-sm font-semibold tracking-tight transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-gradient-to-r from-orange-600 to-red-600 text-white border-orange-600 shadow-lg scale-105'
-                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 hover:scale-102'
-                  } shadow-md hover:shadow-lg transition-colors duration-300`}
+                      ? 'scale-[1.02] border-[#CC5833] bg-[#CC5833] text-[#F2F0E9] shadow-[0_10px_30px_rgba(204,88,51,0.35)]'
+                      : 'border-[#2E4036]/20 bg-[#F2F0E9] text-[#2E4036] hover:-translate-y-px hover:border-[#2E4036]/35 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-gray-500'
+                  }`}
                 >
                   {category}
                 </button>
@@ -344,7 +342,7 @@ const ProductCategories = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-700 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors duration-300"
+                className="w-full rounded-[1.4rem] border border-[#2E4036]/25 bg-[#F2F0E9] px-4 py-3 font-heading text-sm font-semibold text-[#2E4036] focus:outline-none focus:ring-2 focus:ring-[#CC5833] dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -370,9 +368,8 @@ const ProductCategories = () => {
                     transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
                   }}
                 >
-                  
                   <ProductCard
-                    product={product}
+                    product={{ ...product, name: product.name || 'Pinewood Pallet' }}
                     onViewDetails={() => handleViewDetails(product)}
                     onGetQuote={handleGetQuote}
                   />
@@ -383,9 +380,9 @@ const ProductCategories = () => {
             {/* Empty state when no products */}
             {productData[selectedCategory].length === 0 && (
               <div className="text-center py-16">
-                <div className="text-6xl text-gray-300 mb-4">📦</div>
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">No Products Available</h3>
-                <p className="text-gray-500">Products for this category will be available soon.</p>
+                <div className="mb-4 text-6xl text-[#2E4036]/35">📦</div>
+                <h3 className="mb-2 font-heading text-xl font-semibold text-[#2E4036]">No Products Available</h3>
+                <p className="text-[#1A1A1A]/70">Products for this category will be available soon.</p>
               </div>
             )}
           </div>

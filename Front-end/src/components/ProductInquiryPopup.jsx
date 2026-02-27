@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { FaTimes, FaArrowLeft, FaSpinner } from "react-icons/fa";
+import { ArrowLeft, Send, X } from "lucide-react";
+
+const productCategories = [
+  "Used Wooden Pallets",
+  "Industrial Wooden Pallets",
+  "Pinewood Pallet",
+  "Two Ways Wooden Pallet",
+  "Four Way Wooden Pallets",
+  "Rubber Wood Pallets",
+];
+
+const sizeOptions = [
+  "800mm X 1200mm",
+  "1200mm X 1000mm",
+  "1000mm X 1000mm",
+  "1100mm X 1100mm",
+  "1200mm X 1200mm",
+];
 
 const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -11,70 +28,46 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
     unit: "Piece",
     interestedIn: "",
     size: "",
-    requirements: ""
+    requirements: "",
   });
 
-  const productCategories = [
-    "Used Wooden Pallets",
-    "Industrial Wooden Pallets", 
-    "Pinewood Pallet",
-    "Two Ways Wooden Pallet",
-    "Four Way Wooden Pallets",
-    "Rubber Wood Pallets"
-  ];
-
-  const sizeOptions = [
-    "800mm X 1200mm",
-    "1200mm X 1000mm", 
-    "1000mm X 1000mm",
-    "1100mm X 1100mm",
-    "1200mm X 1200mm"
-  ];
+  if (!isOpen) {
+    return null;
+  }
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleNext = () => {
-    if (currentStep < 3) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
+  const handleClose = () => {
+    setCurrentStep(1);
+    onClose();
   };
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    
+
     try {
-      const inquiryData = {
-        product: product,
+      await onSubmit({
+        product,
         customer: {
           mobile: formData.mobile,
           quantity: formData.quantity,
           unit: formData.unit,
           interestedIn: formData.interestedIn,
           size: formData.size,
-          requirements: formData.requirements
+          requirements: formData.requirements,
         },
-        timestamp: new Date().toISOString()
-      };
-      
-      await onSubmit(inquiryData);
+        timestamp: new Date().toISOString(),
+      });
+
       setFormData({
         mobile: "",
         quantity: "",
         unit: "Piece",
         interestedIn: "",
         size: "",
-        requirements: ""
+        requirements: "",
       });
       setCurrentStep(1);
       onClose();
@@ -88,364 +81,168 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
   const isStep1Valid = formData.mobile && formData.mobile.length >= 10;
   const isStep2Valid = formData.quantity && formData.interestedIn && formData.size;
 
-  if (!isOpen) return null;
-
-  
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center p-2 sm:p-4 animate-fadeIn">
-      <div className="relative bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-6xl max-h-[95vh] overflow-y-auto transform animate-slideIn transition-colors duration-300">
-        
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 p-3 backdrop-blur-sm">
+      <div className="relative max-h-[95vh] w-full max-w-4xl overflow-y-auto rounded-[2.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.45)] transition-colors duration-300 dark:border-gray-700 dark:bg-gray-900 md:p-8">
         <button
-          onClick={onClose}
-          className="absolute top-4 sm:top-8 right-4 sm:right-8 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-2xl sm:text-3xl hover:scale-110 transition-all duration-300 z-10 bg-white dark:bg-gray-700 rounded-full p-2 shadow-lg"
+          onClick={handleClose}
+          className="absolute right-5 top-5 rounded-full border border-[#2E4036]/25 p-2 text-[#2E4036] transition hover:-translate-y-px dark:border-gray-600 dark:text-gray-200"
+          aria-label="Close quote dialog"
         >
-          <FaTimes />
+          <X size={18} />
         </button>
 
-        
-        <div className="flex justify-center pt-4 sm:pt-8 pb-2 sm:pb-4 px-4">
-          <div className="flex items-end justify-center gap-2 sm:gap-4">
-            {[1, 2, 3].map((step) => (
-              <div key={step} className="flex flex-col items-center">
-                <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-lg mb-2 ${
-                  currentStep >= step 
-                    ? 'bg-teal-600 text-white' 
-                    : 'bg-gray-200 text-gray-500'
-                }`}>
-                  {step}
-                </div>
-                <span className={`text-xs sm:text-sm font-semibold text-center w-16 sm:w-20 ${
-                  currentStep >= step ? 'text-teal-600' : 'text-gray-500'
-                }`}>
-                  {step === 1 ? 'Contact' : step === 2 ? 'Requirements' : 'Final'}
-                </span>
-              </div>
-            ))}
-          </div>
+        <div className="mb-7 flex items-center justify-center gap-3">
+          {[1, 2, 3].map((step) => (
+            <div key={step} className="flex items-center gap-3">
+              <span
+                className={`flex h-8 w-8 items-center justify-center rounded-full border font-data text-xs ${
+                  currentStep >= step
+                    ? "border-[#CC5833] bg-[#CC5833] text-[#F2F0E9]"
+                    : "border-[#2E4036]/20 bg-[#F2F0E9] text-[#2E4036]/70 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
+                }`}
+              >
+                {step}
+              </span>
+              {step < 3 && <span className="h-px w-8 bg-[#2E4036]/20 dark:bg-gray-600" />}
+            </div>
+          ))}
         </div>
 
-       
         {currentStep === 1 && (
-          <div className="px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12">
-            
-            <div className="text-center mb-6 sm:mb-10">
-              <div className="flex justify-center mb-4 sm:mb-6">
-                <img 
-                  src={product?.image || "/api/placeholder/400/250"} 
-                  alt={product?.name}
-                  className="w-48 sm:w-80 lg:w-96 h-32 sm:h-48 lg:h-64 object-cover rounded-lg sm:rounded-2xl shadow-xl"
-                />
-              </div>
-              
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-2 sm:mb-3">{product?.name}</h3>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-orange-600 mb-4">{product?.price}</div>
-              
-              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg sm:rounded-2xl p-4 sm:p-6 mx-auto max-w-2xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-xs sm:text-lg">
-                  <div className="text-gray-700 dark:text-gray-300">
-                    <p><span className="font-semibold">Sold By:</span> H.K Enterprises</p>
-                    <p><span className="font-semibold">Size (LxW):</span> {product?.size}</p>
-                  </div>
-                  <div className="text-gray-700 dark:text-gray-300">
-                    <p><span className="font-semibold">Shape:</span> {product?.shape || "Rectangular"}</p>
-                    <p><span className="font-semibold">Wood Type:</span> {product?.woodType || "Soft Wood"}</p>
-                  </div>
-                </div>
-                <div className="text-center mt-4">
-                  <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-lg"><span className="font-semibold">Capacity:</span> {product?.capacity || "500 kg"}</p>
-                </div>
+          <div>
+            <div className="mb-6 grid items-center gap-5 rounded-[1.8rem] border border-[#2E4036]/15 bg-[#1A1A1A] p-4 text-[#F2F0E9] md:grid-cols-[150px_1fr]">
+              <img src={product?.image} alt={product?.name || "Selected product"} className="h-28 w-full rounded-[1.2rem] object-cover" />
+              <div>
+                <p className="font-data text-[11px] uppercase tracking-[0.16em] text-[#F2F0E9]/65">Selected Product</p>
+                <p className="mt-1 font-heading text-xl font-bold tracking-tight">{product?.name || "Custom Pallet"}</p>
+                <p className="mt-1 text-sm text-[#F2F0E9]/75">{product?.size} · {product?.capacity || "Load class on request"}</p>
+                <p className="mt-1 font-heading text-lg text-[#CC5833]">{product?.price}</p>
               </div>
             </div>
 
-            
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center mb-6 sm:mb-8">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-2 sm:mb-3">
-                  Get Best Quote
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg">
-                  Get instant quotes and details from "H.K Enterprises" on your mobile
-                </p>
-              </div>
+            <h3 className="font-heading text-2xl font-extrabold tracking-tight text-[#2E4036] dark:text-gray-100">Step 1 · Contact Number</h3>
+            <p className="mt-2 text-sm text-[#1A1A1A]/70 dark:text-gray-300">Enter your mobile number so we can send your quote quickly.</p>
+            <input
+              type="tel"
+              value={formData.mobile}
+              onChange={(event) => handleInputChange("mobile", event.target.value)}
+              placeholder="+91 Mobile Number"
+              className="mt-5 w-full rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
+            />
 
-              
-              <div className="mb-6 sm:mb-8">
-                <label className="block text-lg sm:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-                  Mobile Number
-                </label>
-                <div className="flex shadow-lg rounded-lg sm:rounded-2xl overflow-hidden">
-                  <div className="flex items-center px-3 sm:px-6 bg-gray-50 dark:bg-gray-700 border border-r-0 border-gray-300 dark:border-gray-600">
-                    <img 
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 20'%3E%3Crect width='28' height='20' fill='%23FF9933'/%3E%3Crect y='13.33' width='28' height='6.67' fill='%23138808'/%3E%3Ccircle cx='14' cy='10' r='3' fill='%23000080'/%3E%3C/svg%3E"
-                      alt="IN"
-                      className="w-6 sm:w-8 h-4 sm:h-5 mr-2 sm:mr-3"
-                    />
-                    <span className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-semibold">+91</span>
-                  </div>
-                  <input
-                    type="tel"
-                    value={formData.mobile}
-                    onChange={(e) => handleInputChange("mobile", e.target.value)}
-                    placeholder="Enter your mobile number"
-                    className="flex-1 px-4 sm:px-6 py-3 sm:py-5 text-sm sm:text-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                  />
-                </div>
-                <p className="text-gray-500 dark:text-gray-400 mt-2 sm:mt-3 text-xs sm:text-lg text-center">
-                  We will contact you on this number for the best quote
-                </p>
-              </div>
+            <button
+              onClick={() => setCurrentStep(2)}
+              disabled={!isStep1Valid}
+              className="magnetic-btn relative mt-6 inline-flex w-full items-center justify-center overflow-hidden rounded-[1.4rem] bg-[#CC5833] px-6 py-3 font-heading font-semibold text-[#F2F0E9] disabled:opacity-60"
+            >
+              <span className="magnetic-fill" aria-hidden="true" />
+              <span className="relative z-10">Continue</span>
+            </button>
+          </div>
+        )}
 
-            
-              <button
-                onClick={handleNext}
-                disabled={!isStep1Valid}
-                className="w-full bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white py-4 sm:py-6 px-4 sm:px-8 rounded-lg sm:rounded-2xl text-sm sm:text-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:scale-105"
+        {currentStep === 2 && (
+          <div>
+            <h3 className="font-heading text-2xl font-extrabold tracking-tight text-[#2E4036] dark:text-gray-100">Step 2 · Requirements</h3>
+            <p className="mt-2 text-sm text-[#1A1A1A]/70 dark:text-gray-300">Tell us quantity, category preference, and size.</p>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-[1fr_160px]">
+              <input
+                type="number"
+                value={formData.quantity}
+                onChange={(event) => handleInputChange("quantity", event.target.value)}
+                placeholder="Quantity"
+                className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
+              />
+              <select
+                value={formData.unit}
+                onChange={(event) => handleInputChange("unit", event.target.value)}
+                className="rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
               >
-                Continue to Requirements →
+                <option value="Piece">Piece</option>
+                <option value="Set">Set</option>
+                <option value="Box">Box</option>
+              </select>
+            </div>
+
+            <p className="mt-5 font-data text-[11px] uppercase tracking-[0.16em] text-[#2E4036]/70 dark:text-gray-400">Interested In</p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {productCategories.map((category) => (
+                <label key={category} className="flex cursor-pointer items-center gap-2 rounded-[1rem] border border-[#2E4036]/20 px-3 py-2 text-sm text-[#1A1A1A] dark:border-gray-600 dark:text-gray-100">
+                  <input type="radio" name="interestedIn" value={category} checked={formData.interestedIn === category} onChange={(event) => handleInputChange("interestedIn", event.target.value)} />
+                  <span>{category}</span>
+                </label>
+              ))}
+            </div>
+
+            <p className="mt-5 font-data text-[11px] uppercase tracking-[0.16em] text-[#2E4036]/70 dark:text-gray-400">Size</p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {sizeOptions.map((size) => (
+                <label key={size} className="flex cursor-pointer items-center gap-2 rounded-[1rem] border border-[#2E4036]/20 px-3 py-2 text-sm text-[#1A1A1A] dark:border-gray-600 dark:text-gray-100">
+                  <input type="radio" name="size" value={size} checked={formData.size === size} onChange={(event) => handleInputChange("size", event.target.value)} />
+                  <span>{size}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button onClick={() => setCurrentStep(1)} className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-[#2E4036]/25 px-5 py-3 font-heading font-semibold text-[#2E4036] dark:border-gray-600 dark:text-gray-100">
+                <ArrowLeft size={16} /> Back
+              </button>
+              <button
+                onClick={() => setCurrentStep(3)}
+                disabled={!isStep2Valid}
+                className="magnetic-btn relative inline-flex w-full items-center justify-center overflow-hidden rounded-[1.2rem] bg-[#CC5833] px-5 py-3 font-heading font-semibold text-[#F2F0E9] disabled:opacity-60"
+              >
+                <span className="magnetic-fill" aria-hidden="true" />
+                <span className="relative z-10">Continue</span>
               </button>
             </div>
           </div>
         )}
 
-        
-        {currentStep === 2 && (
-          <div className="px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12">
-            {/* Product Summary */}
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-10 mx-auto max-w-4xl">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                <img 
-                  src={product?.image || "/api/placeholder/150/100"} 
-                  alt={product?.name}
-                  className="w-24 sm:w-32 h-20 sm:h-24 object-cover rounded-lg sm:rounded-xl shadow-lg"
-                />
-                <div className="text-center sm:text-left">
-                  <h3 className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white">{product?.name}</h3>
-                  <div className="text-2xl sm:text-3xl font-bold text-orange-600">{product?.price}</div>
-                  <p className="text-sm sm:text-lg text-gray-600 dark:text-gray-400">Sold By - H.K Enterprises</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-6 sm:mb-10">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-2 sm:mb-3">
-                  Product Requirements
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg">
-                  Help us understand your specific needs for the best quote
-                </p>
-              </div>
-
-              <div className="space-y-6 sm:space-y-10">
-               
-                <div>
-                  <label className="block text-lg sm:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-                    Quantity Required:
-                  </label>
-                  <div className="flex gap-2 sm:gap-4 max-w-md flex-col sm:flex-row">
-                    <input
-                      type="number"
-                      value={formData.quantity}
-                      onChange={(e) => handleInputChange("quantity", e.target.value)}
-                      className="flex-1 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 shadow-md"
-                      placeholder="Enter quantity"
-                    />
-                    <select
-                      value={formData.unit}
-                      onChange={(e) => handleInputChange("unit", e.target.value)}
-                      className="px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 shadow-md"
-                    >
-                      <option value="Piece">Piece</option>
-                      <option value="Set">Set</option>
-                      <option value="Box">Box</option>
-                    </select>
-                  </div>
-                </div>
-
-                
-                <div>
-                  <label className="block text-lg sm:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-                    I am interested in:
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
-                    {productCategories.map((category) => (
-                      <label key={category} className="flex items-center p-3 sm:p-4 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-lg sm:rounded-xl hover:border-teal-300 hover:bg-teal-50 dark:hover:bg-teal-900/30 cursor-pointer transition-all duration-200 shadow-md">
-                        <input
-                          type="radio"
-                          name="interestedIn"
-                          value={category}
-                          checked={formData.interestedIn === category}
-                          onChange={(e) => handleInputChange("interestedIn", e.target.value)}
-                          className="mr-3 sm:mr-4 text-teal-600 focus:ring-teal-500 scale-125"
-                        />
-                        <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-lg">{category}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                
-                <div>
-                  <label className="block text-lg sm:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-                    Size (Length × Width):
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
-                    {sizeOptions.map((size) => (
-                      <label key={size} className="flex items-center p-3 sm:p-4 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 rounded-lg sm:rounded-xl hover:border-teal-300 hover:bg-teal-50 dark:hover:bg-teal-900/30 cursor-pointer transition-all duration-200 shadow-md">
-                        <input
-                          type="radio"
-                          name="size"
-                          value={size}
-                          checked={formData.size === size}
-                          onChange={(e) => handleInputChange("size", e.target.value)}
-                          className="mr-3 sm:mr-4 text-teal-600 focus:ring-teal-500 scale-125"
-                        />
-                        <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-lg">{size}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-               
-                <div className="flex gap-3 sm:gap-6 justify-center flex-col sm:flex-row pt-4 sm:pt-8">
-                  <button
-                    onClick={handleBack}
-                    className="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-lg sm:rounded-xl text-sm sm:text-xl font-semibold transition-all duration-300 shadow-lg order-2 sm:order-1"
-                  >
-                    <FaArrowLeft className="mr-2 sm:mr-3" />
-                    Back
-                  </button>
-                  
-                  <button
-                    onClick={handleNext}
-                    disabled={!isStep2Valid}
-                    className="px-6 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-lg sm:rounded-xl text-sm sm:text-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl hover:shadow-2xl transform hover:scale-105 order-1 sm:order-2"
-                  >
-                    Continue to Final Step →
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        
         {currentStep === 3 && (
-          <div className="px-4 sm:px-8 lg:px-12 pb-8 sm:pb-12">
-            
-            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-10 mx-auto max-w-4xl">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-                <img 
-                  src={product?.image || "/api/placeholder/150/100"} 
-                  alt={product?.name}
-                  className="w-24 sm:w-32 h-20 sm:h-24 object-cover rounded-lg sm:rounded-xl shadow-lg"
-                />
-                <div className="text-center sm:text-left">
-                  <h3 className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white">{product?.name}</h3>
-                  <div className="text-2xl sm:text-3xl font-bold text-orange-600">{product?.price}</div>
-                  <p className="text-xs sm:text-lg text-gray-600 dark:text-gray-400">Quantity: {formData.quantity} {formData.unit} | Size: {formData.size}</p>
-                </div>
-              </div>
+          <div>
+            <h3 className="font-heading text-2xl font-extrabold tracking-tight text-[#2E4036] dark:text-gray-100">Step 3 · Final Notes</h3>
+            <p className="mt-2 text-sm text-[#1A1A1A]/70 dark:text-gray-300">Add any dispatch timeline, location, or handling requirement.</p>
+
+            <textarea
+              value={formData.requirements}
+              onChange={(event) => handleInputChange("requirements", event.target.value)}
+              placeholder="Optional additional requirements"
+              rows={5}
+              className="mt-5 w-full rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
+            />
+
+            <div className="mt-5 rounded-[1.2rem] border border-[#2E4036]/20 bg-[#2E4036]/7 p-4 text-sm text-[#1A1A1A] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100">
+              <p><span className="font-semibold">Product:</span> {formData.interestedIn}</p>
+              <p><span className="font-semibold">Quantity:</span> {formData.quantity} {formData.unit}</p>
+              <p><span className="font-semibold">Size:</span> {formData.size}</p>
+              <p><span className="font-semibold">Contact:</span> +91 {formData.mobile}</p>
             </div>
 
-            <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-6 sm:mb-10">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-white mb-2 sm:mb-3">
-                  🎉 Almost Done!
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-lg">
-                  Add any specific requirements to get the most accurate quote
-                </p>
-              </div>
-
-              
-              <div className="mb-6 sm:mb-10">
-                <label className="block text-lg sm:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-                  Additional Requirements (Optional):
-                </label>
-                <textarea
-                  value={formData.requirements}
-                  onChange={(e) => handleInputChange("requirements", e.target.value)}
-                  placeholder="📝 Describe your specific requirements, delivery location, timeline, or any other details..."
-                  rows={4}
-                  className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-xl border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 resize-none shadow-lg"
-                />
-              </div>
-
-              
-              <div className="bg-teal-50 dark:bg-teal-900/30 border-2 border-teal-200 dark:border-teal-700 rounded-lg sm:rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
-                <h3 className="text-lg sm:text-xl font-bold text-teal-800 dark:text-teal-300 mb-3 sm:mb-4">Order Summary:</h3>
-                <div className="space-y-2 text-xs sm:text-base text-teal-700 dark:text-teal-300">
-                  <p><span className="font-semibold">Product:</span> {formData.interestedIn}</p>
-                  <p><span className="font-semibold">Quantity:</span> {formData.quantity} {formData.unit}</p>
-                  <p><span className="font-semibold">Size:</span> {formData.size}</p>
-                  <p><span className="font-semibold">Contact:</span> +91 {formData.mobile}</p>
-                </div>
-              </div>
-
-              
-              <div className="flex gap-3 sm:gap-6 justify-center flex-col sm:flex-row">
-                <button
-                  onClick={handleBack}
-                  className="flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-white rounded-lg sm:rounded-xl text-sm sm:text-xl font-semibold transition-all duration-300 shadow-lg order-2 sm:order-1"
-                >
-                  <FaArrowLeft className="mr-2 sm:mr-3" />
-                  Back
-                </button>
-                
-                <button
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                  className="px-6 sm:px-16 py-3 sm:py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-lg sm:rounded-xl text-sm sm:text-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 sm:gap-3 shadow-xl hover:shadow-2xl transform hover:scale-105 order-1 sm:order-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <FaSpinner className="animate-spin text-lg sm:text-xl" />
-                      <span>Submitting...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>✨ Get My Quote Now</span>
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <p className="text-center text-teal-600 dark:text-teal-400 italic text-xs sm:text-lg mt-4 sm:mt-6 font-medium">
-                🚀 You're just one click away from getting the best quotes!
-              </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button onClick={() => setCurrentStep(2)} className="inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-[#2E4036]/25 px-5 py-3 font-heading font-semibold text-[#2E4036] dark:border-gray-600 dark:text-gray-100">
+                <ArrowLeft size={16} /> Back
+              </button>
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="magnetic-btn relative inline-flex w-full items-center justify-center overflow-hidden rounded-[1.2rem] bg-[#CC5833] px-5 py-3 font-heading font-semibold text-[#F2F0E9] disabled:opacity-60"
+              >
+                <span className="magnetic-fill" aria-hidden="true" />
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  {isSubmitting ? "Submitting..." : "Get My Quote"}
+                  <Send size={15} />
+                </span>
+              </button>
             </div>
           </div>
         )}
       </div>
-
-      <style jsx="true">{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9) translateY(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out;
-        }
-
-        .animate-slideIn {
-          animation: slideIn 0.5s ease-out;
-        }
-      `}</style>
     </div>,
-    typeof document !== 'undefined' ? document.body : null 
+    document.body
   );
 };
 
