@@ -12,7 +12,7 @@ const LoadingFallback = () => (
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-[#F2F0E9] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[#F2F0E9] text-[#1A1A1A] transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100">
       <Header />
       <main>
         <Suspense fallback={<LoadingFallback />}>
