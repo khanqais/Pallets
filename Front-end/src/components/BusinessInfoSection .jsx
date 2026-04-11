@@ -88,7 +88,7 @@ const BusinessInfoSection = () => {
   return (
     <section 
       id="business-info" 
-      className="relative py-16 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300"
+      className="relative py-16 bg-[#F2F0E9] dark:bg-gray-900 overflow-hidden transition-colors duration-300"
     >
       
 

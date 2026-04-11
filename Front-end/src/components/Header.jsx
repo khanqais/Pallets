@@ -98,8 +98,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-40 bg-white dark:bg-gray-900 shadow-lg transition-colors duration-300">
-        <div className="bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+      <div className="sticky top-0 z-40 bg-[#F2F0E9] dark:bg-gray-900 shadow-lg transition-colors duration-300">
+        <div className="bg-transparent border-b border-[#2E4036]/15 dark:border-gray-700 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-4 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-6 flex-1">
