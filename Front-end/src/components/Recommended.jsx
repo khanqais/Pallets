@@ -131,7 +131,7 @@ const ProductRecommendations = () => {
     <>
       <section 
         id="product-recommendations" 
-        className="relative py-16 bg-[#F2F0E9] dark:bg-gray-900 overflow-hidden transition-colors duration-300"
+        className="relative py-16 bg-transparent overflow-hidden transition-colors duration-300"
       >
        
         

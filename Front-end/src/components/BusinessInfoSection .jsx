@@ -88,11 +88,8 @@ const BusinessInfoSection = () => {
   return (
     <section 
       id="business-info" 
-      className="relative py-16 bg-[#F2F0E9] dark:bg-gray-900 overflow-hidden transition-colors duration-300"
+      className="relative py-16 lg:py-24 bg-transparent overflow-hidden transition-colors duration-300"
     >
-      
-
-
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         
         <div className="text-center mb-12">

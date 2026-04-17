@@ -20,7 +20,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="rounded-t-[4rem] bg-[#1A1A1A] px-6 py-14 text-[#F2F0E9] md:px-10 lg:px-16">
+    <footer className="relative z-10 rounded-t-[4rem] bg-[#1A1A1A] px-6 py-14 text-[#F2F0E9] md:px-10 lg:px-16">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <p className="font-heading text-2xl font-bold tracking-tight">H.K Enterprises</p>
