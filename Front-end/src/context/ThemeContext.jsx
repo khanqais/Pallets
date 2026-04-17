@@ -3,8 +3,8 @@ import React, { createContext, useState, useEffect } from 'react';
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = (props) => {
-  // Start with light mode as default
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Start with dark mode as default
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isHydrated, setIsHydrated] = useState(false);
 
   // Load theme from localStorage after hydration

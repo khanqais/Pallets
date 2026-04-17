@@ -83,7 +83,7 @@ const ContactPage = () => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-[#F2F0E9] px-6 py-6 transition-colors duration-300 dark:bg-gray-900 md:px-10 md:py-8 lg:px-16">
+    <section ref={sectionRef} className="bg-transparent px-6 py-6 transition-colors duration-300 md:px-10 md:py-8 lg:px-16">
       <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_1.1fr]">
         <aside className="contact-animate rounded-[3rem] border border-[#2E4036]/15 bg-[#1A1A1A] p-6 text-[#F2F0E9] shadow-[0_20px_60px_rgba(26,26,26,0.2)] md:p-7">
           <p className="font-data text-xs uppercase tracking-[0.18em] text-[#F2F0E9]/70">Contact Information</p>
