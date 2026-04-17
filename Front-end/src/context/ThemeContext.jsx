@@ -3,8 +3,8 @@ import React, { createContext, useState, useEffect } from 'react';
 export const ThemeContext = createContext();
 
 const ThemeContextProvider = (props) => {
-  // Start with dark mode as default (same on server and client initially)
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // Start with light mode as default
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
 
   // Load theme from localStorage after hydration
@@ -12,9 +12,6 @@ const ThemeContextProvider = (props) => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setIsDarkMode(savedTheme === 'dark');
-    } else {
-      // Apply default theme to DOM
-      document.documentElement.classList.add('dark');
     }
     setIsHydrated(true);
   }, []);

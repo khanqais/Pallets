@@ -127,7 +127,7 @@ const ProductInquiryPopup = ({ isOpen, onClose, product, onSubmit }) => {
               type="tel"
               value={formData.mobile}
               onChange={(event) => handleInputChange("mobile", event.target.value)}
-              placeholder="+91 Mobile Number"
+              placeholder="Mobile Number"
               className="mt-5 w-full rounded-[1.2rem] border border-[#2E4036]/20 bg-[#F2F0E9] px-4 py-3 text-[#1A1A1A] outline-none transition focus:border-[#CC5833] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
             />
 
