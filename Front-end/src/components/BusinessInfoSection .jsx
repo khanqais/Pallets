@@ -86,20 +86,20 @@ const BusinessInfoSection = () => {
   ];
 
   return (
-    <section 
-      id="business-info" 
+    <section
+      id="business-info"
       className="relative py-16 lg:py-24 bg-transparent overflow-hidden transition-colors duration-300"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        
+
         <div className="text-center mb-12">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-lg md:text-xl uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-3 font-semibold transition-colors duration-300">
+            <h2 className="text-lg md:text-xl uppercase tracking-wider text-gray mb-3 transition-colors duration-300">
               WELCOME TO
             </h2>
-            
+
             <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 min-h-auto sm:min-h-[4rem] md:min-h-[7rem] flex items-center justify-center px-2 w-full overflow-visible pb-2">
-              <TextType 
+              <TextType
                 text={[
                   "H.K Enterprises",
                   "Quality Wooden Pallets",
@@ -114,22 +114,22 @@ const BusinessInfoSection = () => {
                 cursorClassName="text-orange-600 dark:text-orange-500 animate-pulse"
               />
             </div>
-            
+
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6 rounded-full"></div>
-            
-            
+
+
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-gray-700 dark:text-white leading-relaxed mb-4">
+              <p className="text-lg text-gray leading-relaxed mb-4">
                 GET IN TOUCH WITH US FOR BEST DEALS
               </p>
-              
+
               {expanded && (
                 <div className="text-lg text-gray-600 dark:text-gray-200 space-y-2 animate-fadeIn">
                   <p>We are a leading trader and wholesaler/distributor specializing in high-quality wooden pallets and packaging solutions.</p>
                   <p>With years of experience in the industry, we provide reliable products that meet international standards.</p>
                 </div>
               )}
-              
+
               <button
                 onClick={() => setExpanded(!expanded)}
                 className="text-orange-600 font-semibold flex items-center gap-2 mx-auto mt-3 transition-colors duration-300"
@@ -141,17 +141,16 @@ const BusinessInfoSection = () => {
           </div>
         </div>
 
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {businessData.map((item, index) => (
             <div
               key={index}
-              className={`group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-              style={{ 
+              className={`group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+              style={{
                 animationDelay: item.delay,
-                transitionDelay: item.delay 
+                transitionDelay: item.delay
               }}
             >
               <GlowingEffect
@@ -164,31 +163,31 @@ const BusinessInfoSection = () => {
                 movementDuration={2}
                 borderWidth={2}
               />
-              
+
               <div className={`absolute inset-0 bg-gradient-to-r ${item.bgGradient} opacity-0 rounded-2xl transition-opacity duration-500`}></div>
-              
+
               <div className="relative z-10">
-                
+
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.gradient} shadow-lg transition-transform duration-300 flex items-center justify-center mb-4`}>
                   <item.icon className="text-white text-xl" />
                 </div>
 
-               
+
                 <div>
                   <h3 className="font-bold text-gray-800 dark:text-white text-lg mb-2 transition-colors duration-300">{item.title}</h3>
                   <p className="text-gray-700 dark:text-gray-300 font-medium leading-relaxed transition-colors duration-300">{item.value}</p>
                 </div>
               </div>
 
-              
+
               <div className="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500"></div>
             </div>
           ))}
         </div>
 
-        
+
         <div className="mt-12 text-center">
-          <div  style={{ transitionDelay: '600ms' }}>
+          <div style={{ transitionDelay: '600ms' }}>
             {/* <div className="relative">
               <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-lg">
                 <FaShieldAlt className="text-white text-2xl" />
