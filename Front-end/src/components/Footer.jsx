@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +6,33 @@ const Footer = () => {
   const navigate = useNavigate();
   const locationUrl = "https://maps.app.goo.gl/TGrDPwFup993fTww8";
   const mapEmbedUrl = "https://www.google.com/maps?q=Mumbra%2C%20Thane%2C%20Maharashtra&output=embed";
+  const mapContainerRef = useRef(null);
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+
+  useEffect(() => {
+    if (shouldLoadMap) return;
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setShouldLoadMap(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadMap(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px 0px' }
+    );
+
+    if (mapContainerRef.current) {
+      observer.observe(mapContainerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [shouldLoadMap]);
 
   const handleProductClick = (e) => {
     e.preventDefault();
@@ -25,15 +52,26 @@ const Footer = () => {
         <div className="md:col-span-2">
           <p className="font-heading text-2xl font-bold tracking-tight">H.K Enterprises</p>
           <p className="mt-3 max-w-md text-sm text-[#F2F0E9]/75">Engineered pallet systems built for strength, custom readiness, and quote speed.</p>
-          <div className="mt-5 overflow-hidden rounded-[1.4rem] border border-[#F2F0E9]/20">
-            <iframe
-              title="HK Enterprises Location"
-              src={mapEmbedUrl}
-              className="h-52 w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+          <div ref={mapContainerRef} className="mt-5 overflow-hidden rounded-[1.4rem] border border-[#F2F0E9]/20">
+            {shouldLoadMap ? (
+              <iframe
+                title="HK Enterprises Location"
+                src={mapEmbedUrl}
+                className="h-52 w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            ) : (
+              <div className="flex h-52 w-full items-center justify-center bg-gradient-to-br from-[#2B2B2B] via-[#1F1F1F] to-[#101010] px-6 text-center">
+                <button
+                  onClick={() => setShouldLoadMap(true)}
+                  className="rounded-full border border-[#F2F0E9]/30 bg-[#F2F0E9]/10 px-5 py-2 text-sm font-medium text-[#F2F0E9] transition-colors duration-300 hover:bg-[#F2F0E9]/20"
+                >
+                  Load Interactive Map
+                </button>
+              </div>
+            )}
           </div>
           <a
             href={locationUrl}

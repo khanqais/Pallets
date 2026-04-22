@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans-main, 'Outfit', system-ui, -apple-system, sans-serif);
   background: #f2f0e9;
   color: #1a1a1a;
   -webkit-font-smoothing: antialiased;

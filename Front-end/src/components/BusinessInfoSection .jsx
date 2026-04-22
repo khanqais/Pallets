@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   FaHandshake,
   FaUsers,
@@ -6,33 +6,13 @@ import {
   FaBalanceScale,
   FaChartLine,
   FaIdCard,
-  FaShieldAlt,
-  FaEye,
   FaChevronDown,
   FaChevronUp
 } from "react-icons/fa";
-import TextType from './TextType';
 import GlowingEffect from './GlowingEffect';
 
 const BusinessInfoSection = () => {
   const [expanded, setExpanded] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("business-info");
-    if (element) observer.observe(element);
-
-    return () => observer.disconnect();
-  }, []);
 
   const businessData = [
     {
@@ -93,26 +73,15 @@ const BusinessInfoSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
 
         <div className="text-center mb-12">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div>
             <h2 className="text-lg md:text-xl uppercase tracking-wider text-gray mb-3 transition-colors duration-300">
               WELCOME TO
             </h2>
 
             <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 min-h-auto sm:min-h-[4rem] md:min-h-[7rem] flex items-center justify-center px-2 w-full overflow-visible pb-2">
-              <TextType
-                text={[
-                  "H.K Enterprises",
-                  "Quality Wooden Pallets",
-                  "Trusted Packaging Solutions",
-                  "Premium Industrial Pallets"
-                ]}
-                typingSpeed={100}
-                pauseDuration={2000}
-                showCursor={true}
-                cursorCharacter="|"
-                className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent block leading-tight sm:leading-normal"
-                cursorClassName="text-orange-600 dark:text-orange-500 animate-pulse"
-              />
+              <h1 className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent block leading-tight sm:leading-normal">
+                Quality Wooden Pallets
+              </h1>
             </div>
 
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6 rounded-full"></div>
@@ -146,11 +115,10 @@ const BusinessInfoSection = () => {
           {businessData.map((item, index) => (
             <div
               key={index}
-              className={`group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+              className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg transition-all duration-500 border border-white/50 dark:border-gray-700/50 overflow-hidden"
               style={{
                 animationDelay: item.delay,
-                transitionDelay: item.delay
+                transitionDelay: '0ms'
               }}
             >
               <GlowingEffect

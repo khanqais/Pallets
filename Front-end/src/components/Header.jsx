@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from 'react-router-dom'; 
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { NavLink, useNavigate } from 'react-router-dom'; 
 import axios from "axios";
 import {
   FaMapMarkerAlt,
@@ -8,48 +8,40 @@ import {
   FaEnvelope,
   FaBars,
   FaTimes,
-  FaShieldAlt,
-  FaSearch,
   FaChevronDown,
-  FaMoon,
-  FaSun,
 } from "react-icons/fa";
-import { assets } from "../assets/assets";
-import { NavLink } from 'react-router-dom';
-import QuickMessagePopup from './QuickMessagePopup'; 
 import Swal from "sweetalert2";
-import { useTheme } from '../hooks/useTheme';
 import AnimatedThemeSwitch from './AnimatedThemeSwitch';
+
+const QuickMessagePopup = lazy(() => import('./QuickMessagePopup'));
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutDropdown, setAboutDropdown] = useState(false);
   const [mobileAboutDropdown, setMobileAboutDropdown] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [showMessagePopup, setShowMessagePopup] = useState(false);
 
-  const location = useLocation();
   const navigate = useNavigate();
-  const isProductPage = location.pathname === '/product';
-  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (ticking) return;
+      ticking = true;
+
+      window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50);
+        ticking = false;
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log("Searching for:", searchQuery);
-    }
-  };
 
   const handleMessageSubmit = async (formData) => {
     try {
@@ -90,10 +82,8 @@ const Header = () => {
 
   const handleMobileNavClick = (path) => {
     setMenuOpen(false);
-    setTimeout(() => {
-      navigate(path);
-      window.scrollTo(0, 0);
-    }, 100);
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -366,11 +356,15 @@ const Header = () => {
         </div>
       </div>
 
-      <QuickMessagePopup
-        isOpen={showMessagePopup}
-        onClose={() => setShowMessagePopup(false)}
-        onSubmit={handleMessageSubmit}
-      />
+      {showMessagePopup && (
+        <Suspense fallback={null}>
+          <QuickMessagePopup
+            isOpen={showMessagePopup}
+            onClose={() => setShowMessagePopup(false)}
+            onSubmit={handleMessageSubmit}
+          />
+        </Suspense>
+      )}
 
       <style jsx="true">{`
         @keyframes fadeIn {
