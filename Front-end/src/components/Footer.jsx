@@ -77,7 +77,7 @@ const Footer = () => {
             href={locationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex text-sm text-[#CC5833] transition-transform duration-300 hover:-translate-y-px"
+            className="mt-3 inline-flex text-sm text-[#D96A3A] transition-transform duration-300 hover:-translate-y-px"
           >
             Open in Google Maps
           </a>
@@ -99,7 +99,7 @@ const Footer = () => {
             <button onClick={handleProductClick} className="text-left transition-transform duration-300 hover:-translate-y-px">Wooden Pallets</button>
             <button onClick={handleProductClick} className="text-left transition-transform duration-300 hover:-translate-y-px">Pine Wood Pallet</button>
             <button onClick={handleProductClick} className="text-left transition-transform duration-300 hover:-translate-y-px">Industrial Pallet</button>
-            <button onClick={handleViewAllClick} className="mt-2 inline-flex items-center gap-2 text-[#CC5833] transition-transform duration-300 hover:-translate-y-px">
+            <button onClick={handleViewAllClick} className="mt-2 inline-flex items-center gap-2 text-[#D96A3A] transition-transform duration-300 hover:-translate-y-px">
               View All <ArrowRight size={14} />
             </button>
           </div>

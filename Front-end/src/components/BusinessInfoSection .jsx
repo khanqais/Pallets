@@ -74,9 +74,9 @@ const BusinessInfoSection = () => {
 
         <div className="text-center mb-12">
           <div>
-            <h2 className="text-lg md:text-xl uppercase tracking-wider text-gray mb-3 transition-colors duration-300">
+            <p className="text-lg md:text-xl uppercase tracking-wider text-gray-500 mb-3 transition-colors duration-300">
               WELCOME TO
-            </h2>
+            </p>
 
             <div className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 min-h-auto sm:min-h-[4rem] md:min-h-[7rem] flex items-center justify-center px-2 w-full overflow-visible pb-2">
               <h1 className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 dark:from-orange-400 dark:via-orange-500 dark:to-red-500 bg-clip-text text-transparent block leading-tight sm:leading-normal">
@@ -88,7 +88,7 @@ const BusinessInfoSection = () => {
 
 
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-gray leading-relaxed mb-4">
+              <p className="text-lg text-gray-600 leading-relaxed mb-4">
                 GET IN TOUCH WITH US FOR BEST DEALS
               </p>
 

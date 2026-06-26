@@ -11,6 +11,7 @@ const ProductImageModal = ({ isOpen, product, onClose }) => {
           onClick={onClose}
           className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors duration-300 text-3xl"
           title="Close"
+          aria-label="Close"
         >
           <FaTimes />
         </button>

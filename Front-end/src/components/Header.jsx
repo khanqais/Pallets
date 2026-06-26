@@ -187,6 +187,9 @@ const Header = () => {
 
                 <button
                   className="md:hidden relative text-gray-700 dark:text-gray-300 text-2xl p-2 rounded-xl hover:bg-orange-100 dark:hover:bg-gray-700 transition-all duration-300"
+                  aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                  aria-expanded={menuOpen}
+                  aria-controls="mobile-menu"
                   onClick={() => setMenuOpen(!menuOpen)}
                 >
                   <div className="relative w-6 h-6 flex items-center justify-center">
@@ -274,6 +277,7 @@ const Header = () => {
 
 
       <div
+        id="mobile-menu"
         className={`md:hidden overflow-hidden transition-all duration-700 ${
           menuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}

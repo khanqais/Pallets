@@ -42,6 +42,7 @@ const QuickMessagePopup = ({ isOpen, onClose, onSubmit }) => {
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xl hover:scale-110 transition-all duration-300"
+          aria-label="Close"
         >
           <FaTimes />
         </button>
