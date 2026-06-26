@@ -74,7 +74,7 @@ const BusinessInfoSection = () => {
 
         <div className="text-center mb-12">
           <div>
-            <p className="text-lg md:text-xl uppercase tracking-wider text-gray-500 mb-3 transition-colors duration-300">
+            <p className="text-lg md:text-xl uppercase tracking-wider text-gray-500 dark:text-white mb-3 transition-colors duration-300">
               WELCOME TO
             </p>
 
@@ -88,7 +88,7 @@ const BusinessInfoSection = () => {
 
 
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+              <p className="text-lg text-gray-600 dark:text-white leading-relaxed mb-4">
                 GET IN TOUCH WITH US FOR BEST DEALS
               </p>
 
