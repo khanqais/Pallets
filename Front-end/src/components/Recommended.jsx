@@ -110,13 +110,13 @@ const ProductRecommendations = () => {
     title: "✅ Inquiry Sent!",
     html: `
       <p>Thank you for your interest in <b>${selectedProduct.name}</b>.</p>
-      <p>Our team will contact you soon at <b>${inquiryData.customer.mobile}</b>.</p>
+      <p>Our team will contact you soon at <b>${inquiryData.customer.email}</b>.</p>
     `,
     icon: "success",
     confirmButtonText: "Great!",
-    confirmButtonColor: "#3085d6",
+    confirmButtonColor: "#CC5833",
   });
-  console.log(`New inquiry: Customer ${inquiryData.customer.mobile} is interested in ${selectedProduct.name}`);
+  console.log(`New inquiry: Customer ${inquiryData.customer.email} is interested in ${selectedProduct.name}`);
 } else {
         throw new Error("Failed to submit inquiry");
       }

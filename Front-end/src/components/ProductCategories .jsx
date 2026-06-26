@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import ProductInquiryPopup from "./ProductInquiryPopup";
 import { assets } from "../assets/assets";
+import Swal from "sweetalert2";
 
 const ProductCategories = () => {
   const [selectedCategory, setSelectedCategory] = useState("CP Wooden Pallets");
@@ -267,13 +268,28 @@ const ProductCategories = () => {
       });
 
       if (response.ok) {
-        alert(`Thank you! We received your inquiry for ${selectedProduct.name}.`);
+        Swal.fire({
+          title: "✅ Inquiry Sent!",
+          html: `
+            <p>Thank you for your interest in <b>${selectedProduct?.name}</b>.</p>
+            <p>Our team will contact you soon at <b>${inquiryData.customer.email}</b>.</p>
+          `,
+          icon: "success",
+          confirmButtonText: "Great!",
+          confirmButtonColor: "#CC5833",
+        });
+        console.log(`New inquiry: ${inquiryData.customer.email} is interested in ${selectedProduct?.name}`);
       } else {
         throw new Error("Failed to submit inquiry");
       }
     } catch (error) {
       console.error("Error submitting inquiry:", error);
-      alert("Failed to submit inquiry. Please try again.");
+      Swal.fire({
+        title: "❌ Failed to Submit",
+        text: "Something went wrong. Please try again.",
+        icon: "error",
+        confirmButtonColor: "#CC5833",
+      });
       throw error;
     }
   };
